@@ -27,6 +27,7 @@
                             <th>Item Number</th>
                             <th>Item Description</th>
                             <th>Spesifikasi</th>
+                            <th>Harga Satuan</th>
                             <th>Foto</th>
                             <th>Aksi</th>
                         </tr>
@@ -34,14 +35,17 @@
                     <tbody>
                         <?php $get = $koneksi->query("SELECT * FROM produk") ?>
                         <?php $no = 1;
-                        while ($data = $get->fetch_assoc()) : ?>
+
+                        while ($data = $get->fetch_assoc()) :
+                        $harga = $data['harga'];
+                        $resultharga = number_format($harga, 0, ',', '.'); ?>
                             <tr>
                                 <td><?php echo $no ?></td>
                                 <td>VIVI - <?= $data['id'] ?></td>
-                                <td><?= $data['item_desc'] ?></td>
+                                <td width="20%"><?= $data['item_desc'] ?></td>
                                 <td width="20%"><?= $data['spesifikasi'] ?></td>
-                                <td width="20%"><?= $data['foto'] ?></td>
-
+                                <td width="15%">Rp <?= $resultharga ?></td>
+                                <td><img src="../assets/img/gambar-produk/<?= $data['foto'] ?>" alt="" class="img-fluid" width="300px"></td>
                                 <td class="text-center">
                                     <a href="?page=produk-delete&id=<?= $data['id'] ?>" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
                                     <a href="?page=produk-update&id=<?= $data['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Ubah</a>

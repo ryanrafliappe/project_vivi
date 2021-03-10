@@ -30,7 +30,12 @@ $data = mysqli_fetch_assoc($query);
         </div>
         <div class="form-group">
             <label for="">Spesifikasi</label>
-            <input type="text" name="spesifikasi" class="form-control" value="<?php echo $data['spesifikasi'] ?>">
+            <!-- <input type="text" name="spesifikasi" class="form-control" value="<?php echo $data['spesifikasi'] ?>"> -->
+            <textarea name="spesifikasi" class="form-control"><?php echo $data['spesifikasi'] ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="">Harga Satuan</label>
+            <input type="text" name="harga" class="form-control" value="<?php echo $data['harga'] ?>">
         </div>
 
 
@@ -47,16 +52,17 @@ $data = mysqli_fetch_assoc($query);
 
 if (isset($_POST['ubah'])) {
     $id = $_POST['id'];
-    $spesifikasi = $_POST['spesifikasi'];
+    $spesifikasi = strtr($_POST['spesifikasi'], array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
     $item_desc = $_POST['item_desc'];
+    $harga = $_POST['harga'];
     $nmfoto = $_FILES['foto']['name'];
     $tmpfoto = $_FILES['foto']['tmp_name'];
 
     if (!empty($nmfoto)) {
         move_uploaded_file($tmpfoto, "../assets/img/gambar-produk/" . $nmfoto);
-        $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi', `foto`='$nmfoto' WHERE id=$id");
+        $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi', `harga`='$harga', `foto`='$nmfoto' WHERE id=$id");
     } else {
-        $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi' WHERE id=$id");
+        $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi', `harga`='$harga' WHERE id=$id");
     }
 
     $_SESSION['flashmessage']['pesan'] = 'Data berhasil diubah.';
