@@ -17,44 +17,33 @@
     endif ?>
     <!-- batas notifikasi -->
 
-    <div class="card">
+    <div class="card" style="margin-bottom: 32px">
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Item Number</th>
-                            <th>Image</th>
-                            <th>Item Description</th>
-                            <th>spesifikasi</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $get = $koneksi->query("SELECT * FROM produk") ?>
-                        <?php
-                        while ($data = $get->fetch_assoc()) : ?>
-                            <tr>
-                                <td class="align-middle" width="14%">VIVI - <?= $data['id'] ?></td>
-                                <td width="20%">
-                                    <img src="../assets/img/gambar-produk/<?= $data['foto'] ?>" alt="" class="img-fluid" width="300px">
-                                </td>
-                                <td class="align-middle" width="17%"><?= $data['item_desc'] ?></td>
-                                <td class="align-middle" width="15%"><?= $data['spesifikasi'] ?></td>
-                                <td class="text-center align-middle">
+            <div class="grid-container">
+                <?php $get = $koneksi->query("SELECT * FROM produk")?>
+                <?php
+                while ($data = $get->fetch_assoc()) : {
+                    } ?>
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="../assets/img/gambar-produk/<?= $data['foto'] ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p style="font-size: 12px; margin-bottom: 4px; color: blue">VIVI - <?= $data['id'] ?></p>
+                                <h5 class="card-title"><?= $data['item_desc'] ?></h5>
+                                <p class="card-text" style="font-size: 14px; margin-bottom: 64px"><?= $data['spesifikasi'] ?></p>
+                                <div class="button-product">
                                     <?php
-                                    if (isset($_SESSION['login'])) : ?>
+                                        if (isset($_SESSION['login'])) : ?>
                                         <a href="?page=produk-detail&idproduk=<?= $data['id'] ?>&itemdesc=<?= $data['item_desc'] ?>&spesifikasi=<?= $data['spesifikasi'] ?>" class="btn btn-outline-primary"><i class="fas fa-info-circle"></i> Kirim Permohonan</a>
-                                    <?php else : ?>
-                                        <a href="../login.php" class="btn btn-primary">Kirim Permohonan</a>
-                                    <?php endif;
-                                    ?>
-                                </td>
-                            </tr>
-                        <?php
-                        endwhile ?>
-                    </tbody>
-                </table>
+                                        <?php else : ?>
+                                            <a href="../login.php" class="btn btn-primary">Kirim Permohonan</a>
+                                        <?php endif;
+                                        ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile ?>
             </div>
         </div>
     </div>
