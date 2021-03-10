@@ -17,7 +17,7 @@
         <div class="form-group">
             <label for="">Spesifikasi</label>
             <!-- <input type="text" name="spesifikasi" class="form-control"> -->
-            <textarea name="spesifikasi" class="form-control"></textarea>
+            <textarea name="spesifikasi" class="form-control" rows="5"></textarea>
         </div>
         <div class="form-group">
             <label for="">Harga Satuan</label>

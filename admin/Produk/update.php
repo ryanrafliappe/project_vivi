@@ -30,8 +30,7 @@ $data = mysqli_fetch_assoc($query);
         </div>
         <div class="form-group">
             <label for="">Spesifikasi</label>
-            <!-- <input type="text" name="spesifikasi" class="form-control" value="<?php echo $data['spesifikasi'] ?>"> -->
-            <textarea name="spesifikasi" class="form-control"><?php echo $data['spesifikasi'] ?></textarea>
+            <textarea name="spesifikasi" class="form-control" rows="5"><?php echo $data['spesifikasi'] ?></textarea>
         </div>
         <div class="form-group">
             <label for="">Harga Satuan</label>
