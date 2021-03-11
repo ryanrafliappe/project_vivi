@@ -8,6 +8,7 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM produk WHERE id=$id";
 $query = mysqli_query($koneksi, $sql);
 $data = mysqli_fetch_assoc($query);
+$spesifikasi = strtr($data['spesifikasi'], array('<br />' => "\n"));
 
 ?>
 
@@ -30,7 +31,7 @@ $data = mysqli_fetch_assoc($query);
         </div>
         <div class="form-group">
             <label for="">Spesifikasi</label>
-            <textarea name="spesifikasi" class="form-control" rows="5"><?php echo $data['spesifikasi'] ?></textarea>
+            <textarea name="spesifikasi" class="form-control" rows="5"><?php echo $spesifikasi ?></textarea>
         </div>
         <div class="form-group">
             <label for="">Harga Satuan</label>
