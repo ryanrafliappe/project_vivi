@@ -24,7 +24,7 @@ if (!isset($_SESSION['login'])) {
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <?php date_default_timezone_set("Asia/Makassar") ?>
-    <?php include "../conf/koneksi.php" ?>
+    <?php include "../conf/koneksi.php"?>
 
 </head>
 

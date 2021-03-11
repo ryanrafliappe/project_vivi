@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $get = $koneksi->query("SELECT terbilang,log_code,id_user,jenis_surat,status_log,produk_log.id,produk.item_desc,harga,spesifikasi,produk_log.nama_surat,produk.id as id_produk FROM `produk_log` JOIN produk ON produk_log.id_produk = produk.id WHERE produk_log.id_user='$id'") ?>
+                        <?php $get = $koneksi->query("SELECT terbilang,log_code,id_user,jenis_surat,status_log,produk_log.id,produk.item_desc,produk_log.harga,spesifikasi,produk_log.nama_surat,produk.id as id_produk FROM `produk_log` JOIN produk ON produk_log.id_produk = produk.id WHERE produk_log.id_user='$id'") ?>
                         <?php
                         while ($data = $get->fetch_assoc()) : ?>
                             <tr>

@@ -2,6 +2,7 @@
 
 require_once '../../assets/vendor/mpdf/autoload.php';
 include '../../conf/koneksi.php';
+include include '../../assets/vendor/terbilang.php';
 
 $mpdf = new \Mpdf\Mpdf([
     'orientation' => 'P'
@@ -11,8 +12,8 @@ $datas = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number = '" . 
 $data = $datas->fetch_assoc();
 
 $idx = $_GET['id'];
-$harga = $_GET['harga'];
-$terbilang = $_GET['terbilang'];
+$harga = $_GET['harga'] + ($_GET['harga'] * 0.1);
+$terbilang = terbilang($harga) . " rupiah";
 $sql = $koneksi->query("SELECT * FROM produk_log WHERE log_code = '" . $_GET['logcode'] . "'");
 $query = $sql->fetch_assoc();
 
@@ -89,7 +90,7 @@ $html = '<!DOCTYPE html>
     <div class="">Dengan Hormat, </div><br>
     <div class="">Sehubungan adanya permintaan penawaran harga untuk pengadaan ' . $item_desc['item_desc'] . ' 
     ' . $item_desc['spesifikasi'] . ' oleh ' . $query['nama_perusahaan'] . ' maka, bersama ini kami mengajukan penawaran harga sebesar : <br><br>
-    Rp. ' . number_format($harga) . ',- / Unit</div><br>
+    Rp. ' . number_format($harga, 0, ',', '.') . ',- / Unit</div><br>
 
     <div class="">Terbilang : ' . $terbilang . '</div>
     <div class="">
