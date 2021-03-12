@@ -2,6 +2,7 @@
 
 require_once '../../assets/vendor/mpdf/autoload.php';
 include '../../conf/koneksi.php';
+include '../../assets/vendor/terbilang.php';
 
 $mpdf = new \Mpdf\Mpdf([
     'orientation' => 'P'
@@ -13,13 +14,19 @@ $data = $datas->fetch_assoc();
 $idx = $_GET['id'];
 
 $harga = $_GET['hargas'];
-$terbilang = $_GET['terbilangs'];
 $sql = $koneksi->query("SELECT * FROM produk_log WHERE log_code = '" . $_GET['logcode'] . "'");
 $query = $sql->fetch_assoc();
 
 $idx = $_GET['id'];
 $item_descs = $koneksi->query("SELECT * FROM produk WHERE id = '" . $data['id_produk'] . "'");
 $item_desc = $item_descs->fetch_assoc();
+
+$dataongkirs = $koneksi->query("SELECT * FROM produk_log WHERE log_code = '" . $_GET['logcode'] . "' && jenis_surat = 'INVOICE'");
+$dataongkir = $dataongkirs->fetch_assoc();
+
+$ongkir = $dataongkir['ongkir'];
+$hargappn = $harga + ($harga * 0.1) + $ongkir;
+$terbilang = terbilang($hargappn) . ' rupiah';
 
 
 function getRomawi($bln)
@@ -92,7 +99,7 @@ $html = '<!DOCTYPE html>
     <div class="">Dengan Hormat, </div><br>
     <div class="">Sehubungan dengan PO No. '. $query['log_code'] .' Tgl. '. $query['date'] .' perihal pengadaan ' . $item_desc['item_desc'] . ' 
     ' . $item_desc['spesifikasi'] . ' yang telah kami selesaikan, maka bersama ini memohon pembayaran sebesar :  <br><br>
-    Rp. ' . number_format($harga) . ',- / Unit</div>
+    Rp. ' . number_format($hargappn, 0, ',', '.') . ',-</div>
 
     <div class="">Terbilang : ' . $terbilang . '</div>
     <div class="">Pembayaran tersebut mohon ditransfer ke :</div>

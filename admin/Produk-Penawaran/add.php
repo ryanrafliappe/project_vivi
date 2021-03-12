@@ -16,12 +16,13 @@ if (isset($_POST['tambah'])) {
     if ($jenisSurat == "INVOICE") {
     $terbilangs = $_POST['terbilang'];
     $hargas = $_POST['harga'];
+    $ongkir = $_POST['ongkir'];
     $status_log = "Menunggu Pembayaran";
 
         $koneksi->query("INSERT INTO `produk_log`(`id_user`, `id_produk`, `log_code`, `nama_perusahaan`, `alamat_perusahaan`,
-        `kota`, `nama_surat`, harga, terbilang, `jenis_surat`, `status_log`, `date`) 
+        `kota`, `nama_surat`, harga, terbilang, `jenis_surat`, `status_log`, `date`, `ongkir`) 
         VALUES ('$id_user','$id_produk','$log_code', '$nama_perusahaan',
-         '$alamat_perusahaan', '$kota', 'INVOICE', '$hargas', '$terbilangs', '$jenisSurat','$status_log', '$date')");
+         '$alamat_perusahaan', '$kota', 'INVOICE', '$hargas', '$terbilangs', '$jenisSurat','$status_log', '$date', '$ongkir')");
 
         $koneksi->query("UPDATE `produk_log` SET status_log = '$status_log' WHERE log_code = '$log_code'");
         

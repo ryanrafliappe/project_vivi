@@ -106,8 +106,8 @@ $html = '<!DOCTYPE html>
             <td>' . $item_desc['item_desc'] . '</td>
             <td>' . $data['qty'] . '</td>
             <td>' . $data['uom'] . '</td>
-            <td>' . number_format($data['price']) . '</td>
-            <td>' . number_format($data['total_harga']) . '</td>
+            <td>' . number_format(($data['price'] + ($data['price'] * 0.1)), 0, ',', '.') . '</td>
+            <td>' . number_format(($data['total_harga'] + ($data['total_harga'] * 0.1)), 0, ',', '.') . '</td>
         </tr>
     </table>
 <br><br>

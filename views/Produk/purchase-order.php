@@ -116,7 +116,8 @@ $datas = mysqli_fetch_assoc($q);
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="">Price (Rp)</label>
-                                    <input type="number" readonly name="harga" value="<?= $datas['harga'] ?>" class="form-control">
+                                    <input type="text" readonly value="<?= "Rp " . number_format(($datas['harga'] + ($datas['harga'] * 0.1)), 0, ',', '.') . ',-'; ?>" class="form-control">
+                                    <input type="hidden" name="harga" value="<?= $datas['harga'] ?>">
                                     <input type="hidden"  name="terbilang" value="<?= $datas['terbilang'] ?>" class="form-control">
                                 </div>
                             </div>
