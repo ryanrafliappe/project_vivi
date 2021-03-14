@@ -85,7 +85,7 @@ $datas = mysqli_fetch_assoc($q);
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Logo Perusahaan</label>
-                            <input type="file" name="logo_perusahaan" class="custom-file" required>
+                            <input type="file" name="logo_perusahaan" class="custom-file">
                         </div>
                         <div class="form-group">
                             <label for="">Nama Perusahaan</label>
@@ -133,7 +133,7 @@ $datas = mysqli_fetch_assoc($q);
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="">UOM</label>
-                                    <input type="text" name="uom" placeholder="PCS" class="form-control">
+                                    <input type="text" name="uom" placeholder="Unit" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@ if (isset($_POST['next'])) {
     move_uploaded_file($logo_perusahaan_tmp, "../assets/img/logo-perusahaan/$logo_perusahaan");
 
 
-    $koneksi->query("INSERT INTO `purchase_order`(`id_produk`, `price`, `qty`, `uom`, `total_harga`, `supplier_name`, `supplier_contact`, `supplier_address`, `supplier_contact_person`, `supplier_email`, `supplier_payment_terms`, `supplier_freight_terms`, `supplier_shipping_method`, `perusahaan_logo`, `perusahaan_nama`, `perusahaan_alamat`, `perusahaan_nomor_telp`, `perusahaan_provinsi`, `procurement_bu`, `req_bu`, `bill_to_location`, `default_ship_to_location`, `po_number`, `date`, `revision`, `buyer`, `Currency`, `status`, `description`, `first_approver`, `last_approver`, `spesifikasi`, `item_desc`) 
+    $koneksi->query("INSERT INTO `purchase_order`(`id_produk`, `price`, `qty`, `uom`, `total_harga`, `supplier_name`, `supplier_contact`, `supplier_address`, `supplier_contact_person`, `supplier_email`, `supplier_payment_terms`, `supplier_freight_terms`, `supplier_shipping_method`, `perusahaan_logo`, `perusahaan_nama`, `perusahaan_alamat`, `perusahaan_nomor_telp`, `perusahaan_provinsi`, `procurement_bu`, `req_bu`, `bill_to_location`, `default_ship_to_location`, `po_number`, `date`, `revision`, `buyer`, `Currency`, `status`, `description`, `first_approver`, `last_approver`, `spesifikasi`, `item_desc`)
     VALUES ('$idproduk','$price','$qty','$uom','$totalharga','$supplier_name','$supplier_contact','$supplier_address','$supplier_contact_person','$supplier_email','$supplier_payment','$supplier_freight','$supplier_shipping','$logo_perusahaan','$nama_perusahaan','$alamat','$nomor_telepon','$provinsi','$proc_bu','$req_bu','$bill_loc','$ship_location','$po_number','$date','$revision','$buyer','$currency','$status','$description','$first_approver','$last_approver','$spesifikasi','$item_desc') ");
 
     $koneksi->query("INSERT INTO `produk_log`(`id_user`, `id_produk`, `log_code`, nama_perusahaan, alamat_perusahaan, kota, `nama_surat`, harga, terbilang, `jenis_surat`, `status_log`, date) VALUES ('$iduser','$idproduk','$po_number','$supplier_name','$supplier_address','Makassar','PO','$totalharga','$terbilang','PO','MENUNGGU INVOICE','$date')");
