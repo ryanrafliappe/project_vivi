@@ -11,9 +11,6 @@ $datas = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number = '" . 
 $data = $datas->fetch_assoc();
 $hargasatuan = $data['price'] + ($data['price'] * 0.1);
 $hargatotal = $data['total_harga'] + ($data['total_harga'] * 0.1);
-var_dump($hargasatuan);
-var_dump($hargatotal);
-die();
 
 $item_descs = $koneksi->query("SELECT * FROM produk WHERE id = '" . $data['id_produk'] . "'");
 $item_desc = $item_descs->fetch_assoc();

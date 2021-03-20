@@ -133,7 +133,7 @@ $datas = mysqli_fetch_assoc($q);
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="">UOM</label>
-                                    <input type="text" name="uom" placeholder="Unit" class="form-control">
+                                    <input type="text" name="uom" class="form-control" value="Unit" readonly>
                                 </div>
                             </div>
                         </div>

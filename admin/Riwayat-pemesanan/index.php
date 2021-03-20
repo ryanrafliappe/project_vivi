@@ -6,6 +6,7 @@
 
     <div class="card mb-4">
         <div class="card-body">
+            <a href="Riwayat-pemesanan/laporan.php" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
             <div class="table-responsive">
                 <table class="table table-bordered dataTable" id="" width="100%" cellspacing="0">
                     <thead>

@@ -49,15 +49,15 @@
 
                         <div class="form-group">
                             <label for="">Nama Perusahaan</label>
-                            <input type="text" value="PT. " name="nama_perusahaan" class="form-control">
+                            <input type="text" placeholder="Nama Perusahaan" name="nama_perusahaan" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Alamat Perusahaan</label>
-                            <input type="text" value="Makassar" name="alamat_perusahaan" class="form-control">
+                            <input type="text" placeholder="Alamat Perusahaan" name="alamat_perusahaan" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Kota</label>
-                            <input type="text" value="Kota" name="kota" class="form-control">
+                            <input type="text" placeholder="Kota Perusahaan" name="kota" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Upload Surat Permohonan</label>

@@ -7,8 +7,20 @@
 
     <form action="" method="post" enctype="multipart/form-data" class="mt-4">
         <div class="form-group">
-            <label for="">Upload Foto</label>
-            <input type="file" name="foto" class="custom-control" required>
+            <label for="">Upload Foto 1</label>
+            <input type="file" name="fotoa" class="custom-control" required>
+        </div>
+        <div class="form-group">
+            <label for="">Upload Foto 2</label>
+            <input type="file" name="fotob" class="custom-control">
+        </div>
+        <div class="form-group">
+            <label for="">Upload Foto 3</label>
+            <input type="file" name="fotoc" class="custom-control">
+        </div>
+        <div class="form-group">
+            <label for="">Upload Foto 4</label>
+            <input type="file" name="fotod" class="custom-control">
         </div>
         <div class="form-group">
             <label for="">Item Description</label>
@@ -35,19 +47,46 @@
 <?php
 
 if (isset($_POST['save'])) {
-    $spesifikasi = strtr($_POST['spesifikasi'], array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
-    $item_desc = $_POST['item_desc'];
-    $harga = $_POST['harga'];
-    $nmfoto = $_FILES['foto']['name'];
-    $tmpfoto = $_FILES['foto']['tmp_name'];
-    $error = $_FILES['foto']['error'];
-    $nmfoto = uniqid() . $nmfoto;
+    $spesifikasi    = strtr($_POST['spesifikasi'], array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
+    $item_desc      = $_POST['item_desc'];
+    $harga          = $_POST['harga'];
+    $nmfoto         = $_FILES['fotoa']['name'];
+    $nmfotob        = $_FILES['fotob']['name'];
+    $nmfotoc        = $_FILES['fotoc']['name'];
+    $nmfotod        = $_FILES['fotod']['name'];
+    $tmpfoto        = $_FILES['fotoa']['tmp_name'];
+    $tmpfotob       = $_FILES['fotob']['tmp_name'];
+    $tmpfotoc       = $_FILES['fotoc']['tmp_name'];
+    $tmpfotod       = $_FILES['fotod']['tmp_name'];
+    $error          = $_FILES['foto']['error'];
+    $nmfoto         = uniqid() . $nmfoto;
+
+    if ($nmfotob != null) {
+        $nmfotob        = uniqid() . $nmfotob;
+    } else {
+        $nmfotob = '-';
+    }
+
+    if ($nmfotoc != null) {
+        $nmfotoc        = uniqid() . $nmfotoc;
+    } else {
+        $nmfotoc = '-';
+    }
+
+    if ($nmfotod != null) {
+        $nmfotod        = uniqid() . $nmfotod;
+    } else {
+        $nmfotod = '-';
+    }
 
     if ($error == "4") {
     } else {
         move_uploaded_file($tmpfoto, "../assets/img/gambar-produk/" . $nmfoto);
-        $koneksi->query("INSERT INTO `produk`(`item_desc`,spesifikasi, `foto`, `harga`)
-         VALUES ('$item_desc','$spesifikasi','$nmfoto', '$harga')");
+        move_uploaded_file($tmpfotob, "../assets/img/gambar-produk/" . $nmfotob);
+        move_uploaded_file($tmpfotoc, "../assets/img/gambar-produk/" . $nmfotoc);
+        move_uploaded_file($tmpfotod, "../assets/img/gambar-produk/" . $nmfotod);
+        $koneksi->query("INSERT INTO `produk`(`item_desc`,spesifikasi, `foto`, `fotob`, `fotoc`, `fotod`, `harga`)
+         VALUES ('$item_desc','$spesifikasi','$nmfoto', '$nmfotob', '$nmfotoc', '$nmfotod', '$harga')");
     }
 
     $_SESSION['flashmessage']['pesan'] = 'Data berhasil ditambahkan.';
