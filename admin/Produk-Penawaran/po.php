@@ -90,6 +90,10 @@ $html = '<!DOCTYPE html>
             <td><b>Shipping Methods</b></td>
             <td>' . $data['supplier_shipping_method'] . '</td>
         </tr>
+        <tr>
+            <td><b>Delivery Date</b></td>
+            <td>' . $data['delivery_date'] . '</td>
+        </tr>
     </table>
 <br>
     <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">

@@ -25,58 +25,71 @@ $spesifikasi = strtr($data['spesifikasi'], array('<br />' => "\n"));
             <tr>
                 <td>
                     <?php if ($data['foto'] != '-') { ?>
-                        <img src="../assets/img/gambar-produk/<?php echo $data['foto'] ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
+                        <img id="fotoaid" src="../assets/img/gambar-produk/<?php echo $data['foto'] ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px; margin-left: 20px;">
                     <?php } ?>
                 </td>
                 <td>
                     <div class="form-group">
                         <label for="">Upload Foto 1</label>
-                        <input type="file" name="fotoa" class="custom-control" value="<?php echo $data['foto'] ?>">
+                        <input type="file" id="fotoain" name="fotoa" class="custom-control" value="<?php echo $data['foto'] ?>">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <?php if ($data['fotob'] != '-') { ?>
-                        <img id="fotob" src="../assets/img/gambar-produk/<?php echo $data['fotob'] ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } else { ?>
-                        <img id="fotob" src="../assets/img/nophoto.png" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } ?>
+                    <?php if ($data['fotob'] != '-') {
+                        $imgsrb = "gambar-produk/" . $data['fotob'];
+                        $delb = 'trash.png';
+                    } else {
+                        $imgsrb = "nophoto.png";
+                        $delb = 'trashdis.png';
+                    } ?>
+                    <input type='image' src='../assets/img/<?php echo $delb ?>' id='delfotob'>
+                    <img id="fotobid" src="../assets/img/<?php echo $imgsrb ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
                 </td>
                 <td>
                     <div class="form-group">
                         <label for="">Upload Foto 2</label>
-                        <input type="file" name="fotob" id="fotobup" class="custom-control" value="<?php echo $data['fotob'] ?>">
+                        <input type="file" name="fotob" id="fotobin" class="custom-control" value="<?php echo $data['fotob'] ?>">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <?php if ($data['fotoc'] != '-') { ?>
-                        <img src="../assets/img/gambar-produk/<?php echo $data['fotoc'] ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } else { ?>
-                        <img src="../assets/img/nophoto.png" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } ?>
+                    <?php if ($data['fotoc'] != '-') { 
+                        $imgsrc = "gambar-produk/" . $data['fotoc'];
+                        $delc = 'trash.png';
+                    } else {
+                        $imgsrc = "nophoto.png";
+                        $delc = 'trashdis.png';
+                    } ?>
+                    <!-- <img id="fotocid" src="../assets/img/<?php echo $imgsrc ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;"> -->
+                    <input type='image' src='../assets/img/<?php echo $delc ?>' id='delfotoc'>
+                    <img id="fotocid" src="../assets/img/<?php echo $imgsrc ?>" alt="your image" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;" />
                 </td>
                 <td>
                     <div class="form-group">
                         <label for="">Upload Foto 3</label>
-                        <input type="file" name="fotoc" class="custom-control" value="<?php echo $data['fotoc'] ?>">
+                        <input type="file" id="fotocin" name="fotoc" class="custom-control" value="<?php echo $data['fotoc'] ?>">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <?php if ($data['fotod'] != '-') { ?>
-                        <img src="../assets/img/gambar-produk/<?php echo $data['fotod'] ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } else { ?>
-                        <img src="../assets/img/nophoto.png" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
-                    <?php } ?>
+                    <?php if ($data['fotod'] != '-') {
+                        $imgsrd = "gambar-produk/" . $data['fotod'];
+                        $deld = 'trash.png';
+                    } else {
+                        $imgsrd = "nophoto.png";
+                        $deld = 'trashdis.png';
+                    } ?>
+                    <input type='image' src='../assets/img/<?php echo $deld ?>' id='delfotod'>
+                    <img id="fotodid" src="../assets/img/<?php echo $imgsrd ?>" style="width: 100px;height: 65px;object-fit: cover; margin-right: 16px;">
                 </td>
                 <td>
                     <div class="form-group">
                         <label for="">Upload Foto 4</label>
-                        <input type="file" name="fotod" class="custom-control" value="<?php echo $data['fotod'] ?>">
+                        <input type="file" id="fotodin" name="fotod" class="custom-control" value="<?php echo $data['fotod'] ?>">
                     </div>
                 </td>
             </tr>
@@ -129,20 +142,26 @@ if (isset($_POST['ubah'])) {
 
     if (!empty($nmfotob)) {
         move_uploaded_file($tmpfotob, "../assets/img/gambar-produk/" . $nmfotob);
-    } else {
+    } else if (!empty($_POST['fotobin'])) {
         $nmfotob = $data['fotob'];
+    } else {
+        $nmfotob = '-';
     }
 
     if (!empty($nmfotoc)) {
         move_uploaded_file($tmpfotoc, "../assets/img/gambar-produk/" . $nmfotoc);
-    } else {
+    } else if (!empty($_POST['fotocin'])){
         $nmfotoc = $data['fotoc'];
+    } else {
+        $nmfotoc = '-';
     }
 
     if (!empty($nmfotod)) {
         move_uploaded_file($tmpfotod, "../assets/img/gambar-produk/" . $nmfotod);
-    } else {
+    } else if (!empty($_POST['fotodin'])) {
         $nmfotod = $data['fotod'];
+    } else {
+        $nmfotod = '-';
     }
     
     $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi', `harga`='$harga', `foto`='$nmfoto', `fotob`='$nmfotob', `fotoc`='$nmfotoc', `fotod`='$nmfotod' WHERE id=$id");
@@ -175,3 +194,101 @@ if (isset($_POST['ubah'])) {
     echo "<script>location='?page=produk'</script>";
 }
 ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function readURLa(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#fotoaid').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURLb(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#fotobid').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+            $("#delfotob").attr('src', '../assets/img/trash.png');
+            $("#delfotob").removeAttr('disabled');
+        }
+    }
+
+    function readURLc(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#fotocid').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+            $("#delfotoc").attr('src', '../assets/img/trash.png');
+            $("#delfotoc").removeAttr('disabled');
+        }
+    }
+
+    function readURLd(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#fotodid').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+            $("#delfotod").attr('src', '../assets/img/trash.png');
+            $("#delfotod").removeAttr('disabled');
+        }
+    }
+    
+    $("#fotoain").change(function(){
+        readURLa(this);
+    });
+
+    $("#fotobin").change(function(){
+        readURLb(this);
+    });
+    
+    $("#fotocin").change(function(){
+        readURLc(this);
+    });
+
+    $("#fotodin").change(function(){
+        readURLd(this);
+    });
+
+    $("#delfotob").click(function(e) {
+        e.preventDefault();
+        $("#fotobid").attr('src', '../assets/img/nophoto.png');
+        $("#fotobin").val("");
+        $("#delfotob").attr('src', '../assets/img/trashdis.png');
+        $("#delfotob").attr('disabled');
+    });
+
+    $("#delfotoc").click(function(e) {
+        e.preventDefault();
+        $("#fotocid").attr('src', '../assets/img/nophoto.png');
+        $("#fotocin").val("");
+        $("#delfotoc").attr('src', '../assets/img/trashdis.png');
+        $("#delfotoc").attr('disabled');
+    });
+
+    $("#delfotod").click(function(e) {
+        e.preventDefault();
+        $("#fotodid").attr('src', '../assets/img/nophoto.png');
+        $("#fotodin").val("");
+        $("#delfotod").attr('src', '../assets/img/trashdis.png');
+        $("#delfotod").attr('disabled');
+    });
+</script>
