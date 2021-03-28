@@ -88,14 +88,14 @@ $html = '<!DOCTYPE html>
     <br><br>
 
     <div class="">Dengan Hormat, </div><br>
-    <div class="">Sehubungan adanya permintaan penawaran harga untuk pengadaan ' . $item_desc['item_desc'] . ' 
+    <div class="">Sehubungan adanya permintaan penawaran harga untuk pengadaan ' . $item_desc['item_desc'] . '
     ' . $item_desc['spesifikasi'] . ' oleh ' . $query['nama_perusahaan'] . ' maka, bersama ini kami mengajukan penawaran harga sebesar : <br><br>
     Rp. ' . number_format($harga, 0, ',', '.') . ',- / Unit</div><br>
 
     <div class="">Terbilang : ' . $terbilang . '</div>
     <div class="">
     <ul>
-        <li>Harga tersebut sudah termasuk PPN 10%</li>
+        <li>Harga tersebut sudah termasuk PPN 10% dan pajak-pajak lainnya.</li>
     </ul>
     </div>
 
