@@ -49,21 +49,21 @@ $html = '<!DOCTYPE html>
             <td><b>Contact</b></td>
             <td>' . $data['supplier_contact'] . '</td>
             <td rowspan=4><b>Bill To Location</b></td>
-            <td rowspan=4>' . $data['bill'] . '</td>
+            <td rowspan=4>' . $data['bill_to_location'] . '</td>
             <td rowspan=2><b>Currency</b></td>
             <td rowspan=2>IDR</td>
         </tr>
         <tr>
             <td rowspan=2><b>Address</b></td>
             <td rowspan=2>' . $data['supplier_address'] . '</td>
-         
-         
+
+
         </tr>
         <tr>
             <td rowspan=2><b>Buyer</b></td>
             <td rowspan=2>' . $data['buyer'] . '</td>
         </tr>
-       
+
         <tr>
             <td><b>Contact Person</b></td>
             <td>' . $data['supplier_contact_person'] . '</td>
@@ -110,8 +110,8 @@ $html = '<!DOCTYPE html>
             <td>' . $item_desc['item_desc'] . '</td>
             <td>' . $data['qty'] . '</td>
             <td>' . $data['uom'] . '</td>
-            <td>' . number_format(($data['price'] + ($data['price'] * 0.1)), 0, ',', '.') . '</td>
-            <td>' . number_format(($data['total_harga'] + ($data['total_harga'] * 0.1)), 0, ',', '.') . '</td>
+            <td>' . number_format(($data['price']), 0, ',', '.') . '</td>
+            <td>' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
         </tr>
     </table>
 <br><br>

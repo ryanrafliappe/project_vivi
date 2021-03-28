@@ -124,7 +124,7 @@ $datas = mysqli_fetch_assoc($q);
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="">Quantity</label>
-                                    <input type="number" name="quantity" value="2" class="form-control">
+                                    <input type="number" name="quantity" value="1" class="form-control">
                                     <input type="hidden" name="idproduk" value="<?= $_GET['id-produk'] ?>">
                                     <input type="hidden" name="id_user" value="<?= $_GET['id-user'] ?>">
                                 </div>

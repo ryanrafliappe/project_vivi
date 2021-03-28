@@ -97,8 +97,8 @@ $html = '<!DOCTYPE html>
     <br><br>
 
     <div class="">Dengan Hormat, </div><br>
-    <div class="">Sehubungan dengan PO No. '. $query['log_code'] .' Tgl. '. $query['date'] .' perihal pengadaan ' . $item_desc['item_desc'] . ' 
-    ' . $item_desc['spesifikasi'] . ' yang telah kami selesaikan, maka bersama ini memohon pembayaran sebesar :  <br><br>
+    <div class="">Sehubungan dengan PO No. '. $query['log_code'] .' Tgl. '. $query['date'] .' perihal pengadaan ' . $item_desc['item_desc'] . '
+     yang telah kami selesaikan, maka bersama ini memohon pembayaran sebesar :  <br><br>
     Rp. ' . number_format($hargappn, 0, ',', '.') . ',-</div>
 
     <div class="">Terbilang : ' . $terbilang . '</div>
