@@ -20,12 +20,13 @@ if (isset($_POST['tambah'])) {
     $status_log = "Menunggu Pembayaran";
 
         $koneksi->query("INSERT INTO `produk_log`(`id_user`, `id_produk`, `log_code`, `nama_perusahaan`, `alamat_perusahaan`,
-        `kota`, `nama_surat`, harga, terbilang, `jenis_surat`, `status_log`, `date`, `ongkir`) 
+        `kota`, `nama_surat`, harga, terbilang, `jenis_surat`, `status_log`, `date`, `ongkir`)
         VALUES ('$id_user','$id_produk','$log_code', '$nama_perusahaan',
          '$alamat_perusahaan', '$kota', 'INVOICE', '$hargas', '$terbilangs', '$jenisSurat','$status_log', '$date', '$ongkir')");
 
+
         $koneksi->query("UPDATE `produk_log` SET status_log = '$status_log' WHERE log_code = '$log_code'");
-        
+
     } else if ($jenisSurat == "SURAT PENAWARAN HARGA") {
 
         $sl = "Menunggu Purchace Order";
@@ -38,6 +39,8 @@ if (isset($_POST['tambah'])) {
            '$alamat_perusahaan', '$kota', 'SURAT PENAWARAN HARGA', '$harga', '$terbilang', '$jenisSurat','$sl', '$date')");
 
         $koneksi->query("UPDATE `produk_log` SET status_log = '$sl', harga='$harga', terbilang='$terbilang' WHERE log_code = '$log_code'");
+    
+
     } else {
         $status_log = "Menunggu Purchase Order";
     }

@@ -7,7 +7,7 @@ $mpdf = new \Mpdf\Mpdf([
     'orientation' => 'P'
 ]);
 
-$get = $koneksi->query("SELECT * FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' GROUP BY log_code");
+$get = $koneksi->query("SELECT * FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE' GROUP BY log_code");
 
 $no = 1;
 
@@ -30,11 +30,15 @@ $html = '<!DOCTYPE html>
             <th style="background-color: #add8e6">Nama Pembeli</th>
             <th style="background-color: #add8e6">Pesanan</th>
             <th style="background-color: #add8e6">Jumlah</th>
+            <th style="background-color: #add8e6">Harga Satuan</th>
+            <th style="background-color: #add8e6">Harga Ongkir</th>
             <th style="background-color: #add8e6">Total Harga</th>
         </tr>
 ';
 
-while ($data = $get->fetch_assoc()) : 
+while ($data = $get->fetch_assoc()) :
+  $hargappn = $data['price'] + ($data['price'] * 0.1);
+  $totalharga = ($hargappn * $data['qty']) + $data['ongkir'];
     $html .= '<tr>
             <td> ' . $no . ' </td>
             <td> ' . $data['date'] . ' </td>
@@ -42,7 +46,9 @@ while ($data = $get->fetch_assoc()) :
             <td> ' . $data['buyer'] . ' </td>
             <td> ' . $data['item_desc'] . ' </td>
             <td> ' . $data['qty'] . ' </td>
-            <td> ' . number_format($data['total_harga']) . ' </td>
+            <td> ' . number_format($hargappn) . ' </td>
+            <td> ' . number_format($data['ongkir']) . ' </td>
+            <td> ' . number_format($totalharga) . ' </td>
         </tr>
         ';
     $no++;
