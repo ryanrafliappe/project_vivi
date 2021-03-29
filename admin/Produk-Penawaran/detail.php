@@ -21,7 +21,9 @@
     <!-- cek status pengajuan -->
     <?php
     $cek = $koneksi->query("SELECT * FROM `produk_log` WHERE log_code='" . $_GET['logcode'] . "' ORDER BY id DESC LIMIT 1");
+    $ambil = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number='" . $_GET['logcode'] . "' ORDER BY id DESC LIMIT 1");
     $hasilcek = $cek->fetch_assoc();
+    $cekquantity = $ambil->fetch_assoc();
 
     $id_user = $hasilcek['id_user'];
     $id_produk = $hasilcek['id_produk'];
@@ -32,6 +34,7 @@
     $harga = $hasilcek['harga'];
     $terbilang = $hasilcek['terbilang'];
     $status = $hasilcek['status_log'];
+    $quantity = $cekquantity['qty'];
 
     ?>
 
@@ -197,8 +200,8 @@
                                         <?php if ($hasilcek['status_log'] == 'Menunggu Invoice') : ?>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword1">Harga</label>
-                                                    <input type="text" value="<?= 'Rp ' . number_format(($harga + ($harga * 0.1)), 0, ',', '.') ?>" readonly class="form-control" id="exampleInputPassword1">
+                                                    <label for="exampleInputPassword1">Harga Total</label>
+                                                    <input type="text" value="<?= 'Rp ' . number_format(($harga + ($harga * 0.1) * $quantity), 0, ',', '.') ?>" readonly class="form-control" id="exampleInputPassword1">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword1">Terbilang</label>

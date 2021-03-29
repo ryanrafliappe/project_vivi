@@ -6,8 +6,11 @@
 
     <div class="card mb-4">
         <div class="card-body">
-            <a href="Riwayat-pemesanan/laporan.php" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
 
+            <?php
+            error_reporting(0);
+            $filterWaktu = $_POST['filterWaktu'];?>
+            <a href="Riwayat-pemesanan/laporan.php?filter=<?= $filterWaktu ?>" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
              <div style="float:right">
                <form class="" action="" method="post">
                  <div class="form-group" style="float:left; margin-right:20px;">
@@ -45,21 +48,12 @@
                           GROUP BY log_code");
 
                         if (isset($_POST['filter'])) {
-                          $filterWaktu = $_POST['filterWaktu'];
+
                           $minggu1 = date("Y-m-d", strtotime("-1 week"));
                           $bulan1 = date("Y-m-d", strtotime("-1 month"));
                           $bulan3 = date("Y-m-d", strtotime("-3 months"));
                           $tahun1 = date("Y-m-d", strtotime("-1 year"));
                           $now = date("Y-m-d");
-                          // echo $now;
-                          // echo "========";
-                          // echo $minggu1;
-                          // echo "========";
-                          // echo $bulan1;
-                          // echo "========";
-                          // echo $bulan3;
-                          // echo "========";
-                          // echo $tahun1;
 
                           if ($filterWaktu == '1minggu') {
                             $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
