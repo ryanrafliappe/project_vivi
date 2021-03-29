@@ -23,6 +23,10 @@ if (!isset($_SESSION['login'])) {
     <link rel="stylesheet" href="../assets/css/customview.css">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/css/stylechat.css">
+
     <?php date_default_timezone_set("Asia/Makassar") ?>
     <?php include "../conf/koneksi.php"?>
 
@@ -87,6 +91,10 @@ if (!isset($_SESSION['login'])) {
                             Penawaran
                         </a> -->
 
+                        <a class="nav-link" href="?page=chat">
+                            <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                            Chat
+                        </a>
                         <a class="nav-link" href="?page=produk-penawaran">
                             <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
                             Penawaran Produk
@@ -195,6 +203,13 @@ if (!isset($_SESSION['login'])) {
                         break;
                     case 'project-update';
                         include "Project/update.php";
+                        break;
+
+                    case 'chat':
+                        include "Chat/index.php";
+                        break;
+                    case 'chat-chat':
+                        include "Chat/chat.php";
                         break;
 
                     case 'produk-penawaran':
