@@ -36,7 +36,7 @@
     ?>
 
     <!-- get harga asli barang -->
-    <?php 
+    <?php
     function penyebut($nilai) {
         $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
@@ -61,7 +61,7 @@
             $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
         } else if ($nilai < 1000000000000000) {
             $temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
-        }     
+        }
         return $temp;
     }
 
@@ -70,7 +70,7 @@
             $hasil = "minus ". trim(penyebut($nilai));
         } else {
             $hasil = trim(penyebut($nilai));
-        }     
+        }
         return $hasil;
     }
 
@@ -142,9 +142,14 @@
                                         </div>
                                         <?php if ($hasilcek['status_log'] == 'Menunggu Surat Penawaran Harga') : ?>
                                             <div class="form-group">
-                                                <label for="">Harga</label>
-                                                <input type="text" class="form-control" value="Rp <?= $hargaaslii ?>" readonly>
+                                                <label for="">Harga Satuan</label>
+                                                <input type="text" class="form-control" value="Rp <?= number_format($hargaasli, 0, ',', '.'); ?>" readonly>
                                                 <input type="hidden" name="hargas" value="<?= $hargaasli ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Harga + PPN</label>
+                                                <input type="text" class="form-control" value="Rp <?= $hargaaslii ?>" readonly>
+                                                <input type="hidden" name="" value="<?= $hargaaslii ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Terbilang</label>

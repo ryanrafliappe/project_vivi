@@ -7,6 +7,22 @@
     <div class="card mb-4">
         <div class="card-body">
             <a href="Riwayat-pemesanan/laporan.php" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
+
+             <div style="float:right">
+               <form class="" action="" method="post">
+                 <div class="form-group" style="float:left; margin-right:20px;">
+                     <select name="filterWaktu" id="" class="custom-select">
+                        <option value="1minggu" selected>Pilih waktu</option>
+                         <option value="1minggu" >1 Minggu</option>
+                         <option value="1bulan" >1 Bulan</option>
+                         <option value="3bulan" >3 Bulan</option>
+                         <option value="1tahun" >1 Tahun</option>
+                     </select>
+                 </div>
+                 <button type="submit" class="btn btn-primary" name="filter" >Filter</button>
+               </form>
+             </div>
+
             <div class="table-responsive">
                 <table class="table table-bordered dataTable" id="" width="100%" cellspacing="0">
                     <thead>
@@ -23,15 +39,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $get = $koneksi->query("SELECT * FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE' GROUP BY log_code") ?>
-                        <?php $no = 1;
+                        <?php
+                        $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
+                          FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
+                          GROUP BY log_code");
+
+                        if (isset($_POST['filter'])) {
+                          $filterWaktu = $_POST['filterWaktu'];
+                          $minggu1 = date("Y-m-d", strtotime("-1 week"));
+                          $bulan1 = date("Y-m-d", strtotime("-1 month"));
+                          $bulan3 = date("Y-m-d", strtotime("-3 months"));
+                          $tahun1 = date("Y-m-d", strtotime("-1 year"));
+                          $now = date("Y-m-d");
+                          // echo $now;
+                          // echo "========";
+                          // echo $minggu1;
+                          // echo "========";
+                          // echo $bulan1;
+                          // echo "========";
+                          // echo $bulan3;
+                          // echo "========";
+                          // echo $tahun1;
+
+                          if ($filterWaktu == '1minggu') {
+                            $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
+                              FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
+                              AND purchase_order.date between '$minggu1' and '$now' GROUP BY log_code");
+                          } elseif ($filterWaktu == '1bulan') {
+                            $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
+                              FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
+                              AND purchase_order.date between '$bulan1' and '$now' GROUP BY log_code");
+                          } elseif ($filterWaktu == "3bulan") {
+                            $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
+                              FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
+                              AND purchase_order.date between '$bulan3' and '$now' GROUP BY log_code");
+                          } elseif ($filterWaktu == '1tahun') {
+                            $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
+                              FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
+                              AND purchase_order.date between '$tahun1' and '$now' GROUP BY log_code");
+                          }
+
+
+                        }
+
+                         $no = 1;
 
                         while ($data = $get->fetch_assoc()) :
                           $hargappn = $data['price'] + ($data['price'] * 0.1);
                           $totalharga = ($hargappn * $data['qty']) + $data['ongkir'];  ?>
+
                             <tr>
                                 <td><?= $no ?></td>
-                                <td><?= $data['date'] ?></td>
+                                <td><?= $data['date_log'] ?></td>
                                 <td><?= $data['perusahaan_nama'] ?></td>
                                 <td><?= $data['buyer'] ?></td>
                                 <td><?= $data['item_desc'] ?></td>

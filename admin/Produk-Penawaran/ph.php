@@ -95,7 +95,7 @@ $html = '<!DOCTYPE html>
     <div class="">Terbilang : ' . $terbilang . '</div>
     <div class="">
     <ul>
-        <li>Harga tersebut sudah termasuk PPN 10% dan pajak-pajak lainnya.</li>
+        <li>Harga tersebut sudah termasuk PPN 10% dan diluar pajak-pajak lainnya.</li>
     </ul>
     </div>
 
