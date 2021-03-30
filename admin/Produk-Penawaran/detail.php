@@ -22,6 +22,7 @@
     <?php
     $cek = $koneksi->query("SELECT * FROM `produk_log` WHERE log_code='" . $_GET['logcode'] . "' ORDER BY id DESC LIMIT 1");
     $ambil = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number='" . $_GET['logcode'] . "' ORDER BY id DESC LIMIT 1");
+
     $hasilcek = $cek->fetch_assoc();
     $cekquantity = $ambil->fetch_assoc();
 
@@ -34,7 +35,10 @@
     $harga = $hasilcek['harga'];
     $terbilang = $hasilcek['terbilang'];
     $status = $hasilcek['status_log'];
-    $quantity = $cekquantity['qty'];
+
+    if ($cekquantity != null) {
+        $quantity = $cekquantity['qty'];
+    }
 
     ?>
 

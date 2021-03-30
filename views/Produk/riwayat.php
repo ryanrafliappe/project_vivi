@@ -7,6 +7,7 @@
 
     <?php
     $id = $_SESSION['login']['id'];
+    $email = $_SESSION['login']['email'];
     ?>
 
     <!-- notifikasi -->
@@ -23,7 +24,12 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="?page=produk-chat" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle"></i> Chat Admin</a>
+            <?php $querycheck = $koneksi->query("SELECT status_log FROM `produk_log` WHERE id_user = '$id' AND jenis_surat = 'SURAT PENAWARAN HARGA'");
+            while($check = $querycheck->fetch_assoc()) :
+                if ($check['status_log'] == 'Menunggu Purchace Order') { ?>
+                    <a href="?page=produk-chat" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle"></i> Chat Admin</a>
+            <?php }
+            endwhile; ?>
             <div class="table-responsive">
                 <table class="table table-bordered dataTable" id="" width="100%" cellspacing="0">
                     <thead>
@@ -64,7 +70,15 @@
                                 <td class="text-center">
                                     <?php
                                     if ($data['jenis_surat'] == "SURAT PENAWARAN HARGA" && $data['status_log'] == 'Menunggu Purchace Order') : ?>
-                                        <a href="?page=produk-po&id-log=<?= $data['id'] ?>&item_desc=<?= $data['item_desc'] ?>&id-produk=<?= $data['id_produk'] ?>&log-code=<?= $data['log_code'] ?>&id-user=<?= $id ?>" class="btn btn-outline-danger">Purchase Order</a>
+                                        <?php $queryusercheck = $koneksi->query("SELECT * FROM `user_chat` WHERE email = '$email'");
+                                        $checkuser = $queryusercheck->fetch_assoc();
+                                        if ($checkuser != null) { ?>
+                                            <a href="?page=produk-po&id-log=<?= $data['id'] ?>&item_desc=<?= $data['item_desc'] ?>&id-produk=<?= $data['id_produk'] ?>&log-code=<?= $data['log_code'] ?>&id-user=<?= $id ?>" class="btn btn-outline-danger">Purchase Order</a>
+                                        <?php } else { ?>
+                                            <form method="post">
+                                                <button class="btn btn-outline-danger" type="submit" name="purchase_order">Purchase Order</button>
+                                            </form>
+                                        <?php } ?>
                                     <?php elseif ($data['jenis_surat'] == "INVOICE" && $data['status_log'] == 'Menunggu Pembayaran') : ?>
                                         <a href="?page=produk-bayar&id-produk=<?= $data['id_produk'] ?>&harga=<?= $data['harga'] ?>&terbilang=<?= $data['terbilang'] ?>&log-code=<?= $data['log_code'] ?>&id-user=<?= $id ?>" class="btn btn-outline-info btn-sm">Kirim</a>
                                     <?php else : ?>
@@ -79,5 +93,12 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<?php 
+if (isset($_POST['purchase_order'])) {
+
+    $message = "Harap hubungi Admin melalui tombol chat terlebih dahulu untuk menentukan waktu pengiriman barang.";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+?>
