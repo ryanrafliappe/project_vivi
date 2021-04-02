@@ -18,15 +18,15 @@
     endif ?>
     <!-- batas notifikasi -->
 
-    <div>
+    <div style="background:#E9ECEF;" >
         <div class="card-body">
             <div>
                 <div class="panel-body" style="margin-bottom: 50px;">
                 <?php
-                $id = $_SESSION['login']['email']; 
+                $id = $_SESSION['login']['email'];
                 $get = $koneksi->query("SELECT * FROM `chat` WHERE pengirim='$id' || penerima= '$id' ORDER BY `date` ASC");
-                while ($data = $get->fetch_assoc()) : 
-                    if ($data['pengirim'] == $id) { ?> 
+                while ($data = $get->fetch_assoc()) :
+                    if ($data['pengirim'] == $id) { ?>
                         <div class="row msg_container base_sent">
                             <div class="col-md-8 col-xs-8">
                                 <div class="messages msg_sent" style="background: #87CEEB">
@@ -47,7 +47,7 @@
                     <?php } ?>
                 <?php endwhile ?>
                 </div>
-                <div  class="card-body" style="position: fixed;bottom: 0; width: 80%; background: white;">
+                <div  class="card-body send_chat_center">
                     <form action="" method="post">
                         <div class="input-group">
                             <input id="btn-input" type="text" class="form-control input-sm chat_input" name="message" placeholder="Tulis pesan Anda disi..." />
@@ -68,7 +68,7 @@ if (isset($_POST['send_chat'])) {
     $date       = date('Y-m-d H:i:s');
 
     $datauser = mysqli_num_rows($koneksi->query("SELECT * FROM `user_chat` WHERE `email` = '$pengirim'"));
-    
+
     if ($datauser == 0) {
         $koneksi->query("INSERT INTO `user_chat` (`email`) VALUES ('$pengirim')");
     }

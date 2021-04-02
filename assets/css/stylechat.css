@@ -64,9 +64,11 @@
 .msg_receive{
     padding-left:0;
     margin-left:0;
+    float:left;
 }
 .msg_sent{
-    padding-bottom:20px !important;
+    /* padding-bottom:20px !important; */
+    float:right;
     margin-right:0;
 }
 .messages {
@@ -77,11 +79,11 @@
   max-width:100%;
 }
 .messages > p {
-    font-size: 13px;
+    font-size: 20px;
     margin: 0 0 0.2rem 0;
   }
 .messages > time {
-    font-size: 11px;
+    font-size: 17px;
     color: #ccc;
 }
 .msg_container {
@@ -153,4 +155,14 @@ img {
     position:fixed;
     left:0px;
     bottom:0;
+}
+
+.send_chat_center {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0%);
+  width: 66%;
+  background: white;
 }
