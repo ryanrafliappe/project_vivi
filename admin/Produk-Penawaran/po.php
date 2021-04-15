@@ -90,18 +90,16 @@ $html = '<!DOCTYPE html>
             <td><b>Shipping Methods</b></td>
             <td>' . $data['supplier_shipping_method'] . '</td>
         </tr>
-        <tr>
-            <td><b>Delivery Date</b></td>
-            <td>' . $data['delivery_date'] . '</td>
-        </tr>
+
     </table>
 <br>
-    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">
+    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;text-align:center;">
         <tr>
             <th style="background-color: #add8e6">Item Number</th>
             <th style="background-color: #add8e6">Item Description</th>
             <th style="background-color: #add8e6">QTY</th>
             <th style="background-color: #add8e6">UOM</th>
+            <th style="background-color: #add8e6">Delivery Date</th>
             <th style="background-color: #add8e6">Price</th>
             <th style="background-color: #add8e6">Total Price</th>
         </tr>
@@ -110,10 +108,61 @@ $html = '<!DOCTYPE html>
             <td>' . $item_desc['item_desc'] . '</td>
             <td>' . $data['qty'] . '</td>
             <td>' . $data['uom'] . '</td>
+            <td>' . $data['delivery_date'] . '</td>
             <td>' . number_format(($data['price']), 0, ',', '.') . '</td>
             <td>' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
         </tr>
     </table>
+<br>
+
+<table borde="1" width="100%">
+  <tr>
+    <th width="60%">
+    <table border="1" cellpadding="5" cellspacing="0" style="width:100%">
+      <tbody>
+        <tr>
+          <td style="width:130px"> Note to Supplier</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td style="width:130px"> Note to Receiver</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td style="width:130px"> Attachments</td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+    <th>
+
+    <th>
+
+    </th>
+
+    <th width="40%">
+    <table border="1" cellpadding="5" cellspacing="0" style="width:100%">
+      <tbody>
+        <tr>
+          <td width="40%"> Ordered Amount</td>
+          <td width="40%">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
+        </tr>
+        <tr>
+          <td width="40%"> Tax</td>
+          <td width="40%"> 0,00 </td>
+        </tr>
+        <tr>
+          <td width="40%"> Total Amount</td>
+          <td width="40%">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
+        </tr>
+      </tbody>
+    </table>
+    </th>
+  </tr>
+</table>
+
+
+
 <br><br>
     <table width="100%">
         <tr>
@@ -121,7 +170,7 @@ $html = '<!DOCTYPE html>
             <th>LAST APPROVER</th>
         </tr>
        <tr >
-                <td style="text-align: center">' . $data['first_approver'] . '</td>
+                <td style="text-align: center">' .$data['first_approver'] . '</td>
                 <td style="text-align: center">'.$data['last_approver'].'</td>
        </tr>
     </table>

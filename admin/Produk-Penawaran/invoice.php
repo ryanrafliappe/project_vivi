@@ -5,7 +5,7 @@ include '../../conf/koneksi.php';
 include '../../assets/vendor/terbilang.php';
 
 $mpdf = new \Mpdf\Mpdf([
-    'orientation' => 'P'
+    'format' => 'A4-P'
 ]);
 
 $datas = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number = '" . $_GET['logcode'] . "'");
@@ -74,7 +74,13 @@ function getRomawi($bln)
 $bulan	= date('n');
 $romawi = getRomawi($bulan);
 
-$html = '<!DOCTYPE html>
+$html = '
+<style>
+@page{
+  margin:25mm;
+}
+</style>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +122,7 @@ $html = '<!DOCTYPE html>
 
 
         <u>Ivan Ladjalani</u>
-                Direktur
+             Direktur
     </pre>
 
 ';

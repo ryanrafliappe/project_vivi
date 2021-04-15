@@ -57,14 +57,14 @@ $html = '<!DOCTYPE html>
         <tr>
             <td rowspan=2><b>Address</b></td>
             <td rowspan=2>' . $data['supplier_address'] . '</td>
-         
-         
+
+
         </tr>
         <tr>
             <td rowspan=2><b>Buyer</b></td>
             <td rowspan=2>' . $data['buyer'] . '</td>
         </tr>
-       
+
         <tr>
             <td><b>Contact Person</b></td>
             <td>' . $data['supplier_contact_person'] . '</td>
@@ -109,6 +109,21 @@ $html = '<!DOCTYPE html>
             <td>' . $data['uom'] . '</td>
             <td>' . number_format($hargasatuan, 0, ',', '.') . '</td>
             <td>' . number_format($hargatotal) . '</td>
+        </tr>
+    </table>
+
+    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">
+        <tr>
+            <td>Note to Supplier</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Note to Receiver</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Attachments</td>
+            <td></td>
         </tr>
     </table>
 ';

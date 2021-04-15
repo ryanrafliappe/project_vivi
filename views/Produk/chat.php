@@ -19,7 +19,7 @@
     <!-- batas notifikasi -->
 
     <div style="background:#E9ECEF;" >
-        <div class="card-body">
+        <div class="card-body" style="height:100%;">
             <div>
                 <div class="panel-body" style="margin-bottom: 50px;">
                 <?php
