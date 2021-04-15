@@ -23,7 +23,7 @@
             <div>
                 <div class="panel-body" style="margin-bottom: 50px;">
                 <?php
-                $id = $_SESSION['login']['email'];
+                $id = $_SESSION['login']['id']; 
                 $get = $koneksi->query("SELECT * FROM `chat` WHERE pengirim='$id' || penerima= '$id' ORDER BY `date` ASC");
                 while ($data = $get->fetch_assoc()) :
                     if ($data['pengirim'] == $id) { ?>
@@ -62,16 +62,10 @@
 
 <?php
 if (isset($_POST['send_chat'])) {
-    $pengirim   = $_SESSION['login']['email'];
+    $pengirim   = $_SESSION['login']['id'];
     $penerima   = "admin";
     $msg        = $_POST['message'];
     $date       = date('Y-m-d H:i:s');
-
-    $datauser = mysqli_num_rows($koneksi->query("SELECT * FROM `user_chat` WHERE `email` = '$pengirim'"));
-
-    if ($datauser == 0) {
-        $koneksi->query("INSERT INTO `user_chat` (`email`) VALUES ('$pengirim')");
-    }
 
     if ($msg != null) {
         $koneksi->query("INSERT INTO `chat`(`pengirim`, `penerima`, `pesan`, `date`) VALUES ('$pengirim','$penerima','$msg','$date')");

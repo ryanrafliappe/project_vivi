@@ -24,9 +24,9 @@
 
     <div class="card">
         <div class="card-body">
-            <?php $querycheck = $koneksi->query("SELECT status_log FROM `produk_log` WHERE id_user = '$id' AND jenis_surat = 'SURAT PENAWARAN HARGA'");
+            <?php $querycheck = $koneksi->query("SELECT status FROM `user_chat` WHERE id_user = '$id'");
             while($check = $querycheck->fetch_assoc()) :
-                if ($check['status_log'] == 'Menunggu Purchace Order') { ?>
+                if ($check['status'] == '1') { ?>
                     <a href="?page=produk-chat" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle"></i> Chat Admin</a>
             <?php }
             endwhile; ?>
@@ -70,7 +70,7 @@
                                 <td class="text-center">
                                     <?php
                                     if ($data['jenis_surat'] == "SURAT PENAWARAN HARGA" && $data['status_log'] == 'Menunggu Purchace Order') : ?>
-                                        <?php $queryusercheck = $koneksi->query("SELECT * FROM `user_chat` WHERE email = '$email'");
+                                        <?php $queryusercheck = $koneksi->query("SELECT * FROM `user_chat` WHERE id_user = '$id' AND status = '1'");
                                         $checkuser = $queryusercheck->fetch_assoc();
                                         if ($checkuser != null) { ?>
                                             <a href="?page=produk-po&id-log=<?= $data['id'] ?>&item_desc=<?= $data['item_desc'] ?>&id-produk=<?= $data['id_produk'] ?>&log-code=<?= $data['log_code'] ?>&id-user=<?= $id ?>" class="btn btn-outline-danger">Purchase Order</a>

@@ -100,6 +100,8 @@ if (isset($_POST['kirim'])) {
      `nama_perusahaan`, `alamat_perusahaan`, `kota`, harga, terbilang, `nama_surat`, `jenis_surat`, `date`) VALUES 
      ('$id_user','$id_produk','$log_code','$nama','$alamat','$kota', '-', '-', '$file','$jenisSurat','$date')");
 
+    $koneksi->query("INSERT INTO `user_chat`(`id_user`, `status`) VALUES ('$id_user', '0')");
+
     $_SESSION['flashmessage']['pesan'] = 'Data berhasil ditambahkan.';
     $_SESSION['flashmessage']['warna'] = 'alert-success';
 

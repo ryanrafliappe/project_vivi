@@ -18,8 +18,8 @@
                 <div class="panel-body" style="margin-bottom: 50px;">
                     <?php
                     $id  = $_GET['id'];
-                    $get = $koneksi->query("SELECT * FROM `chat` JOIN `user` ON chat.pengirim = user.email OR chat.penerima = user.email WHERE pengirim='$id' || penerima= '$id' ORDER BY `date` ASC"); ?>
-                    <?php while ($data = $get->fetch_assoc()) :
+                    $get = $koneksi->query("SELECT * FROM `chat` JOIN `user` ON chat.pengirim = user.id OR chat.penerima = user.id WHERE pengirim='$id' || penerima= '$id' ORDER BY `date` ASC"); ?>
+                    <?php while ($data = $get->fetch_assoc()) : 
                         if ($data['pengirim'] == 'admin') { ?>
                             <div class="row msg_container base_sent">
                                 <div class="col-md-8 col-xs-8">
@@ -62,6 +62,12 @@ if (isset($_POST['send_chat'])) {
     $date       = date('Y-m-d H:i:s');
 
     $koneksi->query("INSERT INTO `chat`(`pengirim`, `penerima`, `pesan`, `date`) VALUES ('$pengirim','$penerima','$msg','$date')");
+
+    $q = $koneksi->query("SELECT * FROM `user_chat` WHERE id_user = $penerima");
+    $check = $q->fetch_assoc();
+    if ($check['status'] == 0) {
+        $koneksi->query("UPDATE `user_chat` SET `status` = '1' WHERE id_user = $penerima");
+    }
 
     echo "<script>location='?page=chat-chat&id=$penerima'</script>";
 }

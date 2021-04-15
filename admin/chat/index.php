@@ -27,14 +27,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $get = $koneksi->query("SELECT user.nama as nama, user_chat.email FROM `user_chat` JOIN `user` ON user_chat.email = user.email") ?>
+                        <?php $get = $koneksi->query("SELECT user.nama as nama, user_chat.id_user FROM `user_chat` JOIN `user` ON user_chat.id_user = user.id") ?>
                         <?php
                         while ($data = $get->fetch_assoc()) : ?>
                             <tr>
                                 <td class="align-middle"><?= $data['nama'] ?></td>
                                 </td>
                                 <td class="text-center">
-                                    <a href="?page=chat-chat&id=<?= $data['email'] ?>" class="btn btn-outline-primary"><i class="fas fa-info-circle"></i></a>
+                                    <a href="?page=chat-chat&id=<?= $data['id_user'] ?>" class="btn btn-outline-primary"><i class="fas fa-info-circle"></i></a>
                                 </td>
                             </tr>
                         <?php
