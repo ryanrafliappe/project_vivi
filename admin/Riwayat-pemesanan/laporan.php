@@ -81,17 +81,17 @@ $html = '<!DOCTYPE html>
     <br>
     <p>Laporan Penjualan '.$jangkaWaktu.' terakhir</p>
 
-    <table border="1" border-collapse: collapse; cellpadding="5" cellspacing="0" style="width: 100%;">
+    <table cellpadding="5" cellspacing="0" style="width: 100%;border: 0.01px solid black;border-collapse: collapse;">
         <tr>
-            <th style="background-color: #add8e6">No</th>
-            <th style="background-color: #add8e6">Tanggal</th>
-            <th style="background-color: #add8e6">Nama Perusahaan</th>
-            <th style="background-color: #add8e6">Nama Pembeli</th>
-            <th style="background-color: #add8e6">Pesanan</th>
-            <th style="background-color: #add8e6">Jumlah</th>
-            <th style="background-color: #add8e6">Harga Satuan</th>
-            <th style="background-color: #add8e6">Harga Ongkir</th>
-            <th style="background-color: #add8e6">Total Harga</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">No</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Tanggal</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Nama Perusahaan</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Nama Pembeli</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Pesanan</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Jumlah</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Harga Satuan</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Harga Ongkir</th>
+            <th style="background-color: #add8e6;border: 0.01px solid black;">Total Harga</th>
         </tr>
 ';
 
@@ -101,15 +101,15 @@ while ($data = $get->fetch_assoc()) :
   $totalharga = ($hargappn * $data['qty']) + $data['ongkir'];
 
     $html .= '<tr>
-            <td> ' . $no . ' </td>
-            <td> ' . $data['date_log'] . ' </td>
-            <td> ' . $data['perusahaan_nama'] . '</td>
-            <td> ' . $data['buyer'] . ' </td>
-            <td> ' . $data['item_desc'] . ' </td>
-            <td> ' . $data['qty'] . ' </td>
-            <td> ' . number_format($hargappn) . ' </td>
-            <td> ' . number_format($data['ongkir']) . ' </td>
-            <td> ' . number_format($totalharga) . ' </td>
+            <td style="border: 0.01px solid black;"> ' . $no . ' </td>
+            <td style="border: 0.01px solid black;"> ' . $data['date_log'] . ' </td>
+            <td style="border: 0.01px solid black;"> ' . $data['perusahaan_nama'] . '</td>
+            <td style="border: 0.01px solid black;"> ' . $data['buyer'] . ' </td>
+            <td style="border: 0.01px solid black;"> ' . $data['item_desc'] . ' </td>
+            <td style="border: 0.01px solid black;"> ' . $data['qty'] . ' </td>
+            <td style="border: 0.01px solid black;"> ' . number_format($hargappn) . ' </td>
+            <td style="border: 0.01px solid black;"> ' . number_format($data['ongkir']) . ' </td>
+            <td style="border: 0.01px solid black;"> ' . number_format($totalharga) . ' </td>
         </tr>
         ';
         $totalPenjualan = $totalPenjualan + $totalharga;
@@ -128,7 +128,7 @@ $html .= '
 
     Makassar, '. tanggal_indonesia($now) .'
     <br><br><br><br><br><br>
-    ( Nama Sekertaris )
+    (______________________)
     </td></tr></table></td>
   </tr>
 

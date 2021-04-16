@@ -29,108 +29,108 @@ $html = '<!DOCTYPE html>
     <h1 style="text-align: center">PURCHASE ORDER</h1>
     <br>
 
-    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">
+    <table cellpadding="5" cellspacing="0" style="width: 100%;border: 0.01px solid black;border-collapse: collapse;">
         <tr>
-            <td colspan=2><b>Supplier Details</b></td>
-            <td><b>Procurement BU</b></td>
-            <td>' . $data['procurement_bu'] . '</td>
-            <td><b>PO Number</b></td>
-            <td>' . $data['po_number'] . '</td>
+            <td colspan=2 style="border: 0.01px solid black;"><b>Supplier Details</b></td>
+            <td style="border: 0.01px solid black;"><b>Procurement BU</b></td>
+            <td style="border: 0.01px solid black;">' . $data['procurement_bu'] . '</td>
+            <td style="border: 0.01px solid black;"><b>PO Number</b></td>
+            <td style="border: 0.01px solid black;">' . $data['po_number'] . '</td>
         </tr>
         <tr>
-            <td><b>Name</b></td>
-            <td>' . $data['supplier_name'] . '</td>
-            <td><b>Req BU</b></td>
-            <td>' . $data['req_bu'] . '</td>
-            <td><b>Date</b></td>
-            <td>' . date("d-m-Y") . '</td>
+            <td style="border: 0.01px solid black;"><b>Name</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_name'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Req BU</b></td>
+            <td style="border: 0.01px solid black;">' . $data['req_bu'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Date</b></td>
+            <td style="border: 0.01px solid black;">' . date("d-m-Y") . '</td>
         </tr>
         <tr>
-            <td><b>Contact</b></td>
-            <td>' . $data['supplier_contact'] . '</td>
-            <td rowspan=4><b>Bill To Location</b></td>
-            <td rowspan=4>' . $data['bill_to_location'] . '</td>
-            <td rowspan=2><b>Currency</b></td>
-            <td rowspan=2>IDR</td>
+            <td style="border: 0.01px solid black;"><b>Contact</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_contact'] . '</td>
+            <td rowspan=4 style="border: 0.01px solid black;"><b>Bill To Location</b></td>
+            <td rowspan=4 style="border: 0.01px solid black;">' . $data['bill_to_location'] . '</td>
+            <td rowspan=2 style="border: 0.01px solid black;"><b>Currency</b></td>
+            <td rowspan=2 style="border: 0.01px solid black;">IDR</td>
         </tr>
         <tr>
-            <td rowspan=2><b>Address</b></td>
-            <td rowspan=2>' . $data['supplier_address'] . '</td>
+            <td rowspan=2 style="border: 0.01px solid black;"><b>Address</b></td>
+            <td rowspan=2 style="border: 0.01px solid black;">' . $data['supplier_address'] . '</td>
 
 
         </tr>
         <tr>
-            <td rowspan=2><b>Buyer</b></td>
-            <td rowspan=2>' . $data['buyer'] . '</td>
+            <td rowspan=2 style="border: 0.01px solid black;"><b>Buyer</b></td>
+            <td rowspan=2 style="border: 0.01px solid black;">' . $data['buyer'] . '</td>
         </tr>
 
         <tr>
-            <td><b>Contact Person</b></td>
-            <td>' . $data['supplier_contact_person'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Contact Person</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_contact_person'] . '</td>
         </tr>
 
         <tr>
-            <td><b>Email</b></td>
-            <td>' . $data['supplier_email'] . '</td>
-            <td rowspan=7><b>Default Ship To Location</b></td>
-            <td rowspan=7>' . $data['default_ship_to_location'] . '</td>
-            <td rowspan=7><b>Description</b></td>
-            <td rowspan=7>' . $data['description'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Email</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_email'] . '</td>
+            <td rowspan=7 style="border: 0.01px solid black;"><b>Default Ship To Location</b></td>
+            <td rowspan=7 style="border: 0.01px solid black;">' . $data['default_ship_to_location'] . '</td>
+            <td rowspan=7 style="border: 0.01px solid black;"><b>Description</b></td>
+            <td rowspan=7 style="border: 0.01px solid black;">' . $data['description'] . '</td>
 
         </tr>
         <tr>
-            <td><b>Payment Terms</b></td>
-            <td>' . $data['supplier_payment_terms'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Payment Terms</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_payment_terms'] . '</td>
         </tr>
         <tr>
-            <td><b>Freight Terms</b></td>
-            <td>' . $data['supplier_freight_terms'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Freight Terms</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_freight_terms'] . '</td>
         </tr>
         <tr>
-            <td><b>Shipping Methods</b></td>
-            <td>' . $data['supplier_shipping_method'] . '</td>
+            <td style="border: 0.01px solid black;"><b>Shipping Methods</b></td>
+            <td style="border: 0.01px solid black;">' . $data['supplier_shipping_method'] . '</td>
         </tr>
 
     </table>
 <br>
-    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;text-align:center;">
+    <table cellpadding="5" cellspacing="0" style="width: 100%;border: 0.01px solid black;border-collapse: collapse;text-align:center;">
         <tr>
-            <th style="background-color: #add8e6">Item Number</th>
-            <th style="background-color: #add8e6">Item Description</th>
-            <th style="background-color: #add8e6">QTY</th>
-            <th style="background-color: #add8e6">UOM</th>
-            <th style="background-color: #add8e6">Delivery Date</th>
-            <th style="background-color: #add8e6">Price</th>
-            <th style="background-color: #add8e6">Total Price</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">Item Number</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">Item Description</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">QTY</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">UOM</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">Delivery Date</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">Price</th>
+            <th style="background-color: #add8e6; border: 0.01px solid black;">Total Price</th>
         </tr>
         <tr>
-            <td>' . date("Y") . $data['id_produk'] . '</td>
-            <td>' . $item_desc['item_desc'] . '</td>
-            <td>' . $data['qty'] . '</td>
-            <td>' . $data['uom'] . '</td>
-            <td>' . $data['delivery_date'] . '</td>
-            <td>' . number_format(($data['price']), 0, ',', '.') . '</td>
-            <td>' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
+            <td style="border: 0.01px solid black;">' . date("Y") . $data['id_produk'] . '</td>
+            <td style="border: 0.01px solid black;">' . $item_desc['item_desc'] . '</td>
+            <td style="border: 0.01px solid black;">' . $data['qty'] . '</td>
+            <td style="border: 0.01px solid black;">' . $data['uom'] . '</td>
+            <td style="border: 0.01px solid black;">' . $data['delivery_date'] . '</td>
+            <td style="border: 0.01px solid black;">' . number_format(($data['price']), 0, ',', '.') . '</td>
+            <td style="border: 0.01px solid black;">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
         </tr>
     </table>
 <br>
 
-<table borde="1" width="100%">
+<table border="0" width="100%" >
   <tr>
     <th width="60%">
-    <table border="1" cellpadding="5" cellspacing="0" style="width:100%">
+    <table border="1" cellpadding="5" cellspacing="0" style="width:100%; border-collapse: collapse; ">
       <tbody>
         <tr>
-          <td style="width:130px"> Note to Supplier</td>
-          <td> </td>
+          <td style="width:130px; border: 0.01px solid black"> Note to Supplier</td>
+          <td style="border: 0.01px solid black;"> </td>
         </tr>
         <tr>
-          <td style="width:130px"> Note to Receiver</td>
-          <td> </td>
+          <td style="width:130px; border: 0.01px solid black"> Note to Receiver</td>
+          <td style="border: 0.01px solid black;"> </td>
         </tr>
         <tr>
-          <td style="width:130px"> Attachments</td>
-          <td> </td>
+          <td style="width:130px; border: 0.01px solid black"> Attachments</td>
+          <td style="border: 0.01px solid black;"> </td>
         </tr>
       </tbody>
     </table>
@@ -141,19 +141,19 @@ $html = '<!DOCTYPE html>
     </th>
 
     <th width="40%">
-    <table border="1" cellpadding="5" cellspacing="0" style="width:100%">
+    <table cellpadding="5" cellspacing="0" style="width:100%; border-collapse: collapse; ">
       <tbody>
         <tr>
-          <td width="40%"> Ordered Amount</td>
-          <td width="40%">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
+          <td width="40%" style="border: 0.01px solid black;"> Ordered Amount</td>
+          <td width="40%" style="border: 0.01px solid black;">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
         </tr>
         <tr>
-          <td width="40%"> Tax</td>
-          <td width="40%"> 0,00 </td>
+          <td width="40%" style="border: 0.01px solid black;"> Tax</td>
+          <td width="40%" style="border: 0.01px solid black;"> 0,00 </td>
         </tr>
         <tr>
-          <td width="40%"> Total Amount</td>
-          <td width="40%">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
+          <td width="40%" style="border: 0.01px solid black;"> Total Amount</td>
+          <td width="40%" style="border: 0.01px solid black;">' . number_format(($data['total_harga']), 0, ',', '.') . '</td>
         </tr>
       </tbody>
     </table>
