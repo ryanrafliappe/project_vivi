@@ -9,23 +9,33 @@
 
             <?php
             error_reporting(0);
-            $filterWaktu = $_POST['filterWaktu'];?>
-            <a href="Riwayat-pemesanan/laporan.php?filter=<?= $filterWaktu ?>" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
-             <div style="float:right">
-               <form class="" action="" method="post">
-                 <div class="form-group" style="float:left; margin-right:20px;">
-                     <select name="filterWaktu" id="" class="custom-select">
-                        <option value="1minggu" selected>Pilih waktu</option>
-                         <option value="1minggu" >1 Minggu</option>
-                         <option value="1bulan" >1 Bulan</option>
-                         <option value="3bulan" >3 Bulan</option>
-                         <option value="1tahun" >1 Tahun</option>
-                     </select>
-                 </div>
-                 <button type="submit" class="btn btn-primary" name="filter" >Filter</button>
-               </form>
-             </div>
-
+            $filterWaktu = $_POST['filterWaktu'];
+            $jabatan = $_POST['jabatan'];
+            $nama = $_POST['nama'];
+            ?>
+            <div class="row">
+              <div class="col">
+                <a href="Riwayat-pemesanan/laporan.php?filter=<?= $filterWaktu ?>&nama=<?= $nama ?>&jabatan= <?= $jabatan ?>" class="btn btn-primary mb-3 btn-sm"> <i class="fas fa-plus-circle" target="_blank"></i> Laporan Pemesanan</a>
+              </div>
+              <div class="col">
+                <form class="" action="" method="post" style="float:right">
+                  <div class="form-group" style="float:left; margin-right:12px">
+                    <input type="text" name="jabatan" placeholder="Jabatan" size="10" required>
+                    <input type="text" name="nama" placeholder="Nama" size="18" required>
+                  </div>
+                  <div class="form-group" style="float:left; margin-right:20px;">
+                      <select name="filterWaktu" id="" class="custom-select">
+                         <option value="1minggu" selected>Pilih waktu</option>
+                          <option value="1minggu" >1 Minggu</option>
+                          <option value="1bulan" >1 Bulan</option>
+                          <option value="3bulan" >3 Bulan</option>
+                          <option value="1tahun" >1 Tahun</option>
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary" name="filter" >Filter</button>
+                </form>
+              </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered dataTable" id="" width="100%" cellspacing="0">
                     <thead>
@@ -94,7 +104,7 @@
                                 <td><?= number_format($totalharga) ?></td>
                             </tr>
                         <?php $no++;
-                        endwhile ?>
+                      endwhile;?>
                     </tbody>
                 </table>
             </div>

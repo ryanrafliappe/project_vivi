@@ -254,7 +254,7 @@
                                         <tr>
                                             <td class="align-middle text-uppercase"><?= $data['jenis_surat'] ?></td>
                                             <td class="text-center">
-                                                <a href="Produk-Penawaran/pH.php?id=<?= $data['id'] ?>&terbilang=<?= $data['terbilang'] ?>&harga=<?= $data['harga'] ?>&logcode=<?= $data['log_code'] ?>" class="btn btn-outline-primary" target="_blank"><i class="fas fa-info-circle"></i></a>
+                                                <a href="Produk-Penawaran/ph.php?id=<?= $data['id'] ?>&terbilang=<?= $data['terbilang'] ?>&harga=<?= $data['harga'] ?>&logcode=<?= $data['log_code'] ?>" class="btn btn-outline-primary" target="_blank"><i class="fas fa-info-circle"></i></a>
                                             </td>
                                         </tr>
                                     <?php elseif ($data['jenis_surat'] == 'INVOICE') : ?>

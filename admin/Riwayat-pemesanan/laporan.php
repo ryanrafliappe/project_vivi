@@ -4,8 +4,10 @@ include '../../conf/koneksi.php';
 
 // $waktu = $_GET['filter'];
 $waktu = $_GET['filter'];
+$jabatannya = $_GET['jabatan'];
+$namanya = $_GET['nama'];
 $mpdf = new \Mpdf\Mpdf([
-    'orientation' => 'P'
+    'format' => 'A4-P'
 ]);
 
 function tanggal_indonesia($tanggal){
@@ -77,7 +79,7 @@ $html = '<!DOCTYPE html>
 
 </head>
 <body>
-    <img src="kopSurat.png" >
+    <img src="kopSurat.PNG" >
     <br>
     <p>Laporan Penjualan '.$jangkaWaktu.' terakhir</p>
 
@@ -127,8 +129,10 @@ $html .= '
     <td><table style="text-align:center"><tr><td>
 
     Makassar, '. tanggal_indonesia($now) .'
+    <br>
+    '. $jabatannya .'
     <br><br><br><br><br><br>
-    (______________________)
+    ('. $namanya .')
     </td></tr></table></td>
   </tr>
 
@@ -136,4 +140,4 @@ $html .= '
 </body>
 </html>';
 $mpdf->WriteHTML("$html");
-$mpdf->Output();
+$mpdf->Output('laporanPenjualan.pdf', \Mpdf\Output\Destination::DOWNLOAD);
