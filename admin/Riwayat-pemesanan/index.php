@@ -36,7 +36,7 @@
             $jabatan = $_POST['jabatan'];
             $nama = $_POST['nama'];
             $TombolFilter = $_POST['status'];
-            
+
             ?>
             <div class="row">
               <div class="col">
@@ -138,13 +138,18 @@
         </div>
     </div>
     <script type="text/javascript">
- $(function(){
-  $(".datepicker").datepicker({
-      format: 'yyyy-mm-dd',
-      autoclose: true,
-      todayHighlight: true,
-      orientation: "bottom",
-  });
- });
-</script>
+     $(function(){
+      $(".datepicker").datepicker({
+          format: 'yyyy-mm-dd',
+          autoclose: true,
+          todayHighlight: true,
+          orientation: "bottom",
+      });
+     });
+
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+      }
+
+    </script>
 </div>

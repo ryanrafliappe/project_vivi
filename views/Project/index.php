@@ -41,7 +41,7 @@ if(!isset($_SESSION['login'])){
                         <div class="text-muted">E-mail</div>
                         <div class="h5 mb-4"><?= $_SESSION['login']['email'] ?></div>
                         <div class="text-muted mb-2">Upload Surat Permohonan</div>
-                        <input type="file" name="file" class="mb-4" />
+                        <input type="file" name="file" class="mb-4" accept=".pdf, .doc, .docx"/>
                         <div class="text-right mt-2">
                             <button type="submit" name="kirim" class="btn btn-primary"> <i class="fas fa-info-circle"></i> Kirim Permohonan</button>
                         </div>
@@ -68,7 +68,7 @@ if(!isset($_SESSION['login'])){
                                 $id = $_SESSION['login']['id'];
 
                                 ?>
-                                <?php $get = $koneksi->query("SELECT project.id, id_user, nama_surat,surat_balasan, status 
+                                <?php $get = $koneksi->query("SELECT project.id, id_user, nama_surat,surat_balasan, status
                                 FROM project JOIN user ON project.id_user=user.id WHERE id_user='$id'") ?>
                                 <?php
 
@@ -123,7 +123,7 @@ if (isset($_POST['kirim'])) {
      ('$id_user', '$file', '$status')");
 
 if ($simpan) {
-    
+
     $_SESSION['flashmessage']['pesan'] = 'Data berhasil ditambahkan.';
     $_SESSION['flashmessage']['warna'] = 'alert-success';
 

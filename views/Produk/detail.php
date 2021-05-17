@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Upload Surat Permohonan</label>
-                            <input type="file" class="custom-file" name="file">
+                            <input type="file" class="custom-file" name="file" accept=".pdf, .doc, .docx*">
                         </div>
                         <div class="form-group text-right">
                             <a href="?page=produk" class="btn">Kembali</a>
@@ -97,7 +97,7 @@ if (isset($_POST['kirim'])) {
     move_uploaded_file("$tmpname", "../assets/dokumen/$file");
 
     $koneksi->query("INSERT INTO `produk_log`(`id_user`, `id_produk`, `log_code`,
-     `nama_perusahaan`, `alamat_perusahaan`, `kota`, harga, terbilang, `nama_surat`, `jenis_surat`, `date`) VALUES 
+     `nama_perusahaan`, `alamat_perusahaan`, `kota`, harga, terbilang, `nama_surat`, `jenis_surat`, `date`) VALUES
      ('$id_user','$id_produk','$log_code','$nama','$alamat','$kota', '-', '-', '$file','$jenisSurat','$date')");
 
     $koneksi->query("INSERT INTO `user_chat`(`id_user`, `status`) VALUES ('$id_user', '0')");

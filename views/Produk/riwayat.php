@@ -1,3 +1,4 @@
+<?php //header("Location: riwayat.php", true, 301); ?>
 <div class="container">
     <h1 class="mt-4">Riwayat Produk </h1>
     <ol class="breadcrumb mb-4">
@@ -95,10 +96,11 @@
     </div>
 </div>
 
-<?php 
+<?php
 if (isset($_POST['purchase_order'])) {
 
-    $message = "Harap hubungi Admin melalui tombol chat terlebih dahulu untuk menentukan waktu pengiriman barang.";
+    $message = "Harap Menunggu konfirmasi dari Admin melalui fitur chat untuk menentukan waktu pengiriman barang. Mohon untuk refresh halaman ini secara berkala.";
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
+//exit();
 ?>

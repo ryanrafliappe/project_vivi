@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Upload Surat Bukti Pembayaran</label>
-                            <input type="file" class="custom-file" name="file">
+                            <input type="file" id="upload" class="custom-file" name="file"  required accept="image/*" onchange="uploadGambar()">
                         </div>
                         <div class="form-group text-right">
                             <a href="?page=produk" class="btn">Kembali</a>
@@ -54,6 +54,36 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  function uploadGambar(){
+    var tipeDokumen = document.getElementById("upload").value;
+    var res1 = tipeDokumen.match(".jpg");
+    var res2 = tipeDokumen.match(".jpeg");
+    var res3 = tipeDokumen.match(".png");
+    var res4 = tipeDokumen.match(".JPG");
+    var res5 = tipeDokumen.match(".JPEG");
+    var res6 = tipeDokumen.match(".PNG");
+
+    if (res1 ){
+      // alert("Maaf, Hanya dapat mengupload gambar");
+      alert("Foto terupload");
+      // document.getElementById("upload").value="";
+    }else if (res2 ){
+      alert("Foto terupload");
+    }else if (res3 ){
+      alert("Foto terupload");
+    }else if (res4 ){
+      alert("Foto terupload");
+    }else if (res5 ){
+      alert("Foto terupload");
+    }else if (res6 ){
+      alert("Foto terupload");
+    }else {
+      alert("Maaf, Hanya dapat mengupload gambar");
+      document.getElementById("upload").value="";
+    }
+  }
+</script>
 
 <?php
 if (isset($_POST['kirim'])) {
@@ -85,4 +115,5 @@ if (isset($_POST['kirim'])) {
     $_SESSION['flashmessage']['warna'] = 'alert-success';
 
     echo "<script>location='?page=produk-riwayat'</script>";
+
 }
