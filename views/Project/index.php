@@ -13,7 +13,7 @@ if(!isset($_SESSION['login'])){
 <div class="container">
     <h1 class="mt-4">Project </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item ">Project</li>
+        <li class="breadcrumb-item active">Project</li>
     </ol>
 
     <!-- notifikasi -->

@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mt-4">Detail Project </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item ">Project</li>
+        <li class="breadcrumb-item "><a href="?page=project">Project</a></li>
         <li class="breadcrumb-item active">Detail</li>
 
     </ol>

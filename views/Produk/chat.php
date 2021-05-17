@@ -1,8 +1,8 @@
 <div class="container">
     <h1 class="mt-4">Chat </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item">Produk</li>
-        <li class="breadcrumb-item">Riwayat</li>
+        <li class="breadcrumb-item" ><a href="?page=produk">Produk</a></li>
+        <li class="breadcrumb-item" ><a href="?page=produk-riwayat">Riwayat</a></li>
         <li class="breadcrumb-item active">Chat</li>
     </ol>
 
@@ -23,7 +23,7 @@
             <div>
                 <div class="panel-body" style="margin-bottom: 50px;">
                 <?php
-                $id = $_SESSION['login']['id']; 
+                $id = $_SESSION['login']['id'];
                 $get = $koneksi->query("SELECT * FROM `chat` WHERE pengirim='$id' || penerima= '$id' ORDER BY `date` ASC");
                 while ($data = $get->fetch_assoc()) :
                     if ($data['pengirim'] == $id) { ?>

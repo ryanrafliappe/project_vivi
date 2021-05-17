@@ -22,8 +22,8 @@ $datas = mysqli_fetch_assoc($q);
 <div class="container">
     <h1 class="mt-4">Purchase Order </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item">Produk</li>
-        <li class="breadcrumb-item">Riwayat</li>
+        <li class="breadcrumb-item"><a href="?page=produk">Produk</a></li>
+        <li class="breadcrumb-item"><a href="?page=produk-riwayat">Riwayat</a></li>
         <li class="breadcrumb-item active">Purchase Order</li>
 
     </ol>
@@ -215,7 +215,11 @@ $datas = mysqli_fetch_assoc($q);
         </div>
 
     </form>
-
+    <script type="text/javascript">
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
 </div>
 <br>
 

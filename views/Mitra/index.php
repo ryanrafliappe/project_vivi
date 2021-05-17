@@ -1,5 +1,8 @@
 <div class="container mt-5">
     <h3>Mitra</h3>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Mitra</li>
+    </ol>
     <div class="row">
 
         <?php $get =  $koneksi->query("SELECT * FROM mitra") ?>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <h1 class="mt-4">Detail Penawaran </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item ">Penawaran</li>
+        <li class="breadcrumb-item "><a href="?page=produk-penawaran">Penawaran Produk</a></li>
         <li class="breadcrumb-item active">Detail</li>
 
     </ol>

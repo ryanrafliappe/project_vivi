@@ -1,7 +1,10 @@
 <div class="container mt-5">
     <h3>Galeri Produk</h3>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Galeri Produk</li>
+    </ol>
     <div class="row">
-        
+
         <?php $get =  $koneksi->query("SELECT * FROM galeri WHERE kategori='produk'") ?>
         <?php while ($data = $get->fetch_assoc()) { ?>
 

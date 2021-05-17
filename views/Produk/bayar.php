@@ -1,9 +1,7 @@
 <div class="container">
     <h1 class="mt-4">Pembayaran </h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item ">Pembayaran</li>
-        <li class="breadcrumb-item active">Detail</li>
-
+        <li class="breadcrumb-item active">Pembayaran</li>
     </ol>
 
     <!-- notifikasi -->
@@ -55,6 +53,10 @@
     </div>
 </div>
 <script type="text/javascript">
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+
   function uploadGambar(){
     var tipeDokumen = document.getElementById("upload").value;
     var res1 = tipeDokumen.match(".jpg");
