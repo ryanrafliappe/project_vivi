@@ -1,11 +1,13 @@
 <?php
 require_once '../../assets/vendor/mpdf/autoload.php';
 include '../../conf/koneksi.php';
-
-// $waktu = $_GET['filter'];
-$waktu = $_GET['filter'];
+$statusTombol = "Tidak";
+$tgl_awal = $_GET['tgl_awal'];
+$tgl_akhir = $_GET['tgl_akhir'];
 $jabatannya = $_GET['jabatan'];
 $namanya = $_GET['nama'];
+
+$statusTombol = $_GET['kondisiTombol'];
 $mpdf = new \Mpdf\Mpdf([
     'format' => 'A4-P'
 ]);
@@ -28,43 +30,24 @@ function tanggal_indonesia($tanggal){
 
     $pecahkan = explode('-', $tanggal);
 
-    // variabel pecahkan 0 = tahun
-    // variabel pecahkan 1 = bulan
-    // variabel pecahkan 2 = tanggal
-
     return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 
-// $get = $koneksi->query("SELECT * FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE' GROUP BY log_code");
-$get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
-  FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
-  GROUP BY log_code");
-  $minggu1 = date("Y-m-d", strtotime("-1 week"));
-  $bulan1 = date("Y-m-d", strtotime("-1 month"));
-  $bulan3 = date("Y-m-d", strtotime("-3 months"));
-  $tahun1 = date("Y-m-d", strtotime("-1 year"));
+
+  $tanggal_awal = tanggal_indonesia($tgl_awal);
+  $tanggal_akhir = tanggal_indonesia($tgl_akhir);
   $now = date("Y-m-d");
 
-  if ($waktu == '1minggu') {
-    $jangkaWaktu = "1 Minggu";
+  if ($statusTombol > 0) {
+    $status = "Laporan Penjualan dari tanggal $tanggal_awal hingga tanggal $tanggal_akhir ";
     $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
       FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
-      AND purchase_order.date between '$minggu1' and '$now' GROUP BY log_code");
-  } elseif ($waktu == '1bulan') {
-    $jangkaWaktu = "1 Bulan";
+      AND purchase_order.date between '$tgl_awal' and '$tgl_akhir' GROUP BY log_code");
+  } else{
+    $status = "";
     $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
       FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
-      AND purchase_order.date between '$bulan1' and '$now' GROUP BY log_code");
-  } elseif ($waktu == "3bulan") {
-    $jangkaWaktu = "3 Bulan";
-    $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
-      FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
-      AND purchase_order.date between '$bulan3' and '$now' GROUP BY log_code");
-  } elseif ($waktu == '1tahun') {
-    $jangkaWaktu = "1 Tahun";
-    $get = $koneksi->query("SELECT purchase_order.date as date_po, produk_log.date as date_log, perusahaan_nama,buyer,item_desc,qty,price,ongkir
-      FROM purchase_order JOIN produk_log ON purchase_order.po_number=produk_log.log_code WHERE `status_log`='SELESAI' AND `jenis_surat`='INVOICE'
-      AND purchase_order.date between '$tahun1' and '$now' GROUP BY log_code");
+      GROUP BY log_code");
   }
 
 $no = 1;
@@ -81,7 +64,7 @@ $html = '<!DOCTYPE html>
 <body>
     <img src="kopSurat.PNG" >
     <br>
-    <p>Laporan Penjualan '.$jangkaWaktu.' terakhir</p>
+    <p>'.$status.'</p>
 
     <table cellpadding="5" cellspacing="0" style="width: 100%;border: 0.01px solid black;border-collapse: collapse;">
         <tr>

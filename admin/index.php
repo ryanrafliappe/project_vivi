@@ -23,6 +23,7 @@ if (!isset($_SESSION['login'])) {
     <link rel="stylesheet" href="../assets/css/customview.css">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet"type="text/css" href="../assets/plugin/datepicker/css/bootstrap-datepicker.min.css">
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/css/stylechat.css">
@@ -291,6 +292,7 @@ if (!isset($_SESSION['login'])) {
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="../assets/demo/datatables-demo.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
+    <script src="../assets/plugin/datepicker/js/bootstrap-datepicker.min.js"></script>
     <script>
         ClassicEditor
             .create(document.querySelector('.ckeditor'))
