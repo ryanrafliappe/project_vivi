@@ -81,7 +81,7 @@ $html = '
 <body>
     <div class="" style="text-align: right">Makassar, ' . $query['date'] . '</div>
     <p>
-    <div class="">No&emsp;&emsp;&emsp;: ' . $idx . '/LDJ-MKS/' . $romawi . '/' . date('Y') . '</div>
+    <div class="">No&emsp;&emsp;&emsp;: ' . $idx . '/ATM-MKS/' . $romawi . '/' . date('Y') . '</div>
     <div class="">Lamp&emsp;&nbsp; : - </div>
     <div class="">Hal&emsp;&nbsp;&emsp;&nbsp;: <u>Penawaran Harga</u></div>
     </p>

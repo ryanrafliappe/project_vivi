@@ -5,7 +5,7 @@
     </ol>
 
     <!-- notifikasi -->
-    <?php if (isset($_SESSION['flashmessage'])) : ?>
+    <?php if (isset($_SESSION['flashmessage'])) :?>
         <div class="alert <?= $_SESSION['flashmessage']['warna'] ?> alert-dismissible fade show" role="alert">
             <strong>Berhasil!</strong> <?= $_SESSION['flashmessage']['pesan'] ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -34,14 +34,17 @@
                     <tbody>
                         <?php $get = $koneksi->query("SELECT * FROM galeri") ?>
                         <?php $no = 1;
-                        while ($data = $get->fetch_assoc()) : ?>
+
+                        while ($data = $get->fetch_assoc()) :
+
+                          $tgl = date("d-m-Y", strtotime($data['tanggal']));?>
                             <tr>
-                                <td class="align-middle"><?= $no ?></td>
+                                <td class="text-center align-middle" ><?= $no ?></td>
                                 <td class="align-middle"><img src="../assets/img/<?= $data['foto'] ?>" class="img-fluid" width="200px"></td>
                                 <td class="align-middle"><?= $data['keterangan'] ?></td>
                                 <td class="align-middle"><?= $data['kategori'] ?></td>
-                                <td class="align-middle"><?= $data['tanggal'] ?></td>
-                                <td class="text-center align-middle">
+                                <td class="align-middle"style="width:10%"><?= $tgl ?></td>
+                                <td class="text-center align-middle"style="width:15%">
                                     <a href="?page=galeri-delete&id=<?= $data['id'] ?>" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
                                     <a href="?page=galeri-update&id=<?= $data['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Ubah</a>
                                 </td>

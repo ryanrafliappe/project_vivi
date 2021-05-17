@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Upload File</label><br>
-                        <input type="file" name="barang">
+                        <input type="file" name="barang" accept="image/*">
                     </div>
                     <input type="hidden" name="status" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>

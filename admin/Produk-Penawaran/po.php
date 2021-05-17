@@ -4,7 +4,9 @@ require_once '../../assets/vendor/mpdf/autoload.php';
 include '../../conf/koneksi.php';
 
 $mpdf = new \Mpdf\Mpdf([
-    'orientation' => 'P'
+    'format' => 'A4-P',
+    'default_font_size' => 7,
+    'default_font' => 'arial'
 ]);
 
 $datas = $koneksi->query("SELECT * FROM `purchase_order` WHERE po_number = '" . $_GET['logcode'] . "'");
@@ -22,11 +24,12 @@ $html = '<!DOCTYPE html>
 </head>
 <body>
     <img src="../../assets/img/logo-perusahaan/'.$data['perusahaan_logo'].'" alt="" srcset="" width="150px">
+    <br><br><br>
     <div class="">' . $data['perusahaan_nama'] . '</div>
     <div class="">' . $data['perusahaan_alamat'] . '</div>
     <div class="">' . $data['perusahaan_nomor_telp'] . '</div>
     <div class="">' . $data['perusahaan_provinsi'] . '</div>
-    <h1 style="text-align: center">PURCHASE ORDER</h1>
+    <h1 style="text-align: center; font-size:23;">PURCHASE ORDER</h1>
     <br>
 
     <table cellpadding="5" cellspacing="0" style="width: 100%;border: 0.01px solid black;border-collapse: collapse;">
@@ -35,42 +38,44 @@ $html = '<!DOCTYPE html>
             <td style="border: 0.01px solid black;"><b>Procurement BU</b></td>
             <td style="border: 0.01px solid black;">' . $data['procurement_bu'] . '</td>
             <td style="border: 0.01px solid black;"><b>PO Number</b></td>
-            <td style="border: 0.01px solid black;">' . $data['po_number'] . '</td>
+            <td style="border: 0.01px solid black;"><b>' . $data['po_number'] . '</b></td>
         </tr>
         <tr>
             <td style="border: 0.01px solid black;"><b>Name</b></td>
-            <td style="border: 0.01px solid black;">' . $data['supplier_name'] . '</td>
+            <td style="border: 0.01px solid black;width:100px">' . $data['supplier_name'] . '</td>
             <td style="border: 0.01px solid black;"><b>Req BU</b></td>
             <td style="border: 0.01px solid black;">' . $data['req_bu'] . '</td>
             <td style="border: 0.01px solid black;"><b>Date</b></td>
             <td style="border: 0.01px solid black;">' . date("d-m-Y") . '</td>
         </tr>
         <tr>
-            <td style="border: 0.01px solid black;"><b>Contact</b></td>
+            <td style="border: 0.01px solid black;width:100px"><b>Contact</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_contact'] . '</td>
             <td rowspan=4 style="border: 0.01px solid black;"><b>Bill To Location</b></td>
             <td rowspan=4 style="border: 0.01px solid black;">' . $data['bill_to_location'] . '</td>
-            <td rowspan=2 style="border: 0.01px solid black;"><b>Currency</b></td>
-            <td rowspan=2 style="border: 0.01px solid black;">IDR</td>
+            <td style="border: 0.01px solid black;"><b>Revision</b></td>
+            <td style="border: 0.01px solid black;">' . $data['revision'] . '</td>
         </tr>
         <tr>
-            <td rowspan=2 style="border: 0.01px solid black;"><b>Address</b></td>
+            <td rowspan=2 style="border: 0.01px solid black;width:100px"><b>Address</b></td>
             <td rowspan=2 style="border: 0.01px solid black;">' . $data['supplier_address'] . '</td>
-
-
+            <td style="border: 0.01px solid black;"><b>Buyer</b></td>
+            <td style="border: 0.01px solid black;">' . $data['buyer'] . '</td>
         </tr>
         <tr>
-            <td rowspan=2 style="border: 0.01px solid black;"><b>Buyer</b></td>
-            <td rowspan=2 style="border: 0.01px solid black;">' . $data['buyer'] . '</td>
+          <td style="border: 0.01px solid black;"><b>Currency</b></td>
+          <td style="border: 0.01px solid black;">IDR</td>
         </tr>
 
         <tr>
-            <td style="border: 0.01px solid black;"><b>Contact Person</b></td>
+            <td style="border: 0.01px solid black;width:100px"><b>Contact Person</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_contact_person'] . '</td>
+            <td style="border: 0.01px solid black;"><b>status</b></td>
+            <td style="border: 0.01px solid black;">' . $data['status'] . '</td>
         </tr>
 
         <tr>
-            <td style="border: 0.01px solid black;"><b>Email</b></td>
+            <td style="border: 0.01px solid black;width:100px"><b>Email</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_email'] . '</td>
             <td rowspan=7 style="border: 0.01px solid black;"><b>Default Ship To Location</b></td>
             <td rowspan=7 style="border: 0.01px solid black;">' . $data['default_ship_to_location'] . '</td>
@@ -79,15 +84,15 @@ $html = '<!DOCTYPE html>
 
         </tr>
         <tr>
-            <td style="border: 0.01px solid black;"><b>Payment Terms</b></td>
+            <td style="border: 0.01px solid black;width:100px"><b>Payment Terms</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_payment_terms'] . '</td>
         </tr>
         <tr>
-            <td style="border: 0.01px solid black;"><b>Freight Terms</b></td>
+            <td style="border: 0.01px solid black;width:100px"><b>Freight Terms</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_freight_terms'] . '</td>
         </tr>
         <tr>
-            <td style="border: 0.01px solid black;"><b>Shipping Methods</b></td>
+            <td style="border: 0.01px solid black; width:100px"><b>Shipping Methods</b></td>
             <td style="border: 0.01px solid black;">' . $data['supplier_shipping_method'] . '</td>
         </tr>
 
@@ -164,14 +169,18 @@ $html = '<!DOCTYPE html>
 
 
 <br><br>
-    <table width="100%">
+    <table width="100%" style="border: 0.01px solid black;border-collapse: collapse;">
         <tr>
-            <th>FIRST APPROVER</th>
+            <th style="border-right: 0.01px solid black;">FIRST APPROVER</th>
             <th>LAST APPROVER</th>
         </tr>
        <tr >
-                <td style="text-align: center">' .$data['first_approver'] . '</td>
+                <td style="text-align: center; border-right: 0.01px solid black;">' .$data['first_approver'] . '</td>
                 <td style="text-align: center">'.$data['last_approver'].'</td>
+       </tr>
+       <tr >
+                <td style="text-align: center; height:50px; border-right: 0.01px solid black;"></td>
+                <td style="text-align: center; height:50px"></td>
        </tr>
     </table>
 ';

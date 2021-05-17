@@ -8,19 +8,19 @@
     <form action="" method="post" enctype="multipart/form-data" class="mt-4">
         <div class="form-group">
             <label for="">Upload Foto 1</label>
-            <input type="file" name="fotoa" class="custom-control" required>
+            <input type="file" name="fotoa" class="custom-control" accept="image/*" accept="image/*" required>
         </div>
         <div class="form-group">
             <label for="">Upload Foto 2</label>
-            <input type="file" name="fotob" class="custom-control">
+            <input type="file" name="fotob" class="custom-control" accept="image/*">
         </div>
         <div class="form-group">
             <label for="">Upload Foto 3</label>
-            <input type="file" name="fotoc" class="custom-control">
+            <input type="file" name="fotoc" class="custom-control" accept="image/*">
         </div>
         <div class="form-group">
             <label for="">Upload Foto 4</label>
-            <input type="file" name="fotod" class="custom-control">
+            <input type="file" name="fotod" class="custom-control" accept="image/*">
         </div>
         <div class="form-group">
             <label for="">Item Description</label>
