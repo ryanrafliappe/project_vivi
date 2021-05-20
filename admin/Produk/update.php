@@ -56,7 +56,7 @@ $spesifikasi = strtr($data['spesifikasi'], array('<br />' => "\n"));
             </tr>
             <tr>
                 <td>
-                    <?php if ($data['fotoc'] != '-') { 
+                    <?php if ($data['fotoc'] != '-') {
                         $imgsrc = "gambar-produk/" . $data['fotoc'];
                         $delc = 'trash.png';
                     } else {
@@ -94,7 +94,7 @@ $spesifikasi = strtr($data['spesifikasi'], array('<br />' => "\n"));
                 </td>
             </tr>
         </table>
-        
+
         <div class="form-group">
             <label for="">Item Description</label>
             <input type="text" name="item_desc" class="form-control" value="<?php echo $data['item_desc'] ?>">
@@ -111,7 +111,7 @@ $spesifikasi = strtr($data['spesifikasi'], array('<br />' => "\n"));
 
 
         <div class="form-group text-right">
-            <a href="?page=artikel" class="btn"><i class="fas fa-times"></i> Cancel</a>
+            <a href="?page=produk" class="btn"><i class="fas fa-times"></i> Cancel</a>
             <button type="submit" name="ubah" class="btn btn-warning"> <i class="fas fa-pen"></i> Ubah</button>
         </div>
     </form>
@@ -163,7 +163,7 @@ if (isset($_POST['ubah'])) {
     } else {
         $nmfotod = '-';
     }
-    
+
     $koneksi->query("UPDATE produk SET `item_desc`='$item_desc', spesifikasi='$spesifikasi', `harga`='$harga', `foto`='$nmfoto', `fotob`='$nmfotob', `fotoc`='$nmfotoc', `fotod`='$nmfotod' WHERE id=$id");
 
     /*if (!empty($nmfoto)) {
@@ -201,11 +201,11 @@ if (isset($_POST['ubah'])) {
     function readURLa(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function (e) {
                 $('#fotoaid').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]);
         }
     }
@@ -213,11 +213,11 @@ if (isset($_POST['ubah'])) {
     function readURLb(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function (e) {
                 $('#fotobid').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]);
             $("#delfotob").attr('src', '../assets/img/trash.png');
             $("#delfotob").removeAttr('disabled');
@@ -227,11 +227,11 @@ if (isset($_POST['ubah'])) {
     function readURLc(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function (e) {
                 $('#fotocid').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]);
             $("#delfotoc").attr('src', '../assets/img/trash.png');
             $("#delfotoc").removeAttr('disabled');
@@ -241,17 +241,17 @@ if (isset($_POST['ubah'])) {
     function readURLd(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
+
             reader.onload = function (e) {
                 $('#fotodid').attr('src', e.target.result);
             }
-            
+
             reader.readAsDataURL(input.files[0]);
             $("#delfotod").attr('src', '../assets/img/trash.png');
             $("#delfotod").removeAttr('disabled');
         }
     }
-    
+
     $("#fotoain").change(function(){
         readURLa(this);
     });
@@ -259,7 +259,7 @@ if (isset($_POST['ubah'])) {
     $("#fotobin").change(function(){
         readURLb(this);
     });
-    
+
     $("#fotocin").change(function(){
         readURLc(this);
     });

@@ -31,7 +31,7 @@ session_start();
 
     <nav class="navbar navbar-expand-lg navbar-blue shadow">
         <div class="container">
-            <a class="navbar-brand font-weight-bolder" href="#">PT Anugrah Tehnik Mandiri</a>
+            <a class="navbar-brand font-weight-bolder" href="?page=home">PT Anugrah Tehnik Mandiri</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,6 +84,7 @@ session_start();
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="?page=produk-riwayat">Riwayat</a>
+                                <a class="dropdown-item" href="?page=ganti-password">Ganti Password</a>
                                 <a class="dropdown-item" href="../logout.php">Logout</a>
                             </div>
                         </li>
@@ -155,6 +156,9 @@ session_start();
                 break;
             case 'penawaran-detail':
                 include "Penawaran/detail.php";
+                break;
+            case 'ganti-password':
+                include "user/index.php";
                 break;
 
             case 'mitra':
