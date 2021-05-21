@@ -60,7 +60,7 @@
                           $koneksi->query("UPDATE user SET `katasandi`='$password_baru' WHERE id=$id");
                               ?>
                               <div class="alert alert-success" role="alert">
-                                Data Berhasil diubah
+                                Password Berhasil diubah
                               </div>
                             <?php
 
