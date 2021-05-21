@@ -21,19 +21,22 @@
                         <form class="" action="" method="post">
                           <div class="form-group">
                               <label for="">Password Lama</label>
-                              <input type="text" name="katasandi_lama" class="form-control"  required>
+                              <input type="password" name="katasandi_lama" class="form-control"  required id="myInput">
                           </div>
                           <div class="form-group">
                               <label for="">Password Baru</label>
-                              <input type="text" name="katasandi_baru" class="form-control" required>
+                              <input type="password" name="katasandi_baru" class="form-control" required id="myInput1">
                           </div>
                           <div class="form-group">
                               <label for="">Konfirmasi Password Baru</label>
-                              <input type="text" name="konfirmasi_katasandi_baru" class="form-control" required>
+                              <input type="password" name="konfirmasi_katasandi_baru" class="form-control" required id="myInput2">
                           </div>
 
-                          <div class="form-group text-right">
+                        <div class="form-group">
+                            <input type="checkbox" onclick="myFunction()" style="transform:scale(1.25)">  Show Password
+                        </div>
 
+                          <div class="form-group text-right">
                               <button type="submit" name="ubah" class="btn btn-info"> <i class="fas fa-pen"></i> Ubah</button>
                           </div>
                         </form>
@@ -47,7 +50,7 @@
                         if ($password_lama != $data['katasandi']) {
                           ?>
                           <div class="alert alert-danger" role="alert">
-                            Password lama yang dimasukkan salah
+                            Password lama yang anda masukkan salah
                           </div>
                           <?php
                         }else if ($konfirmasi_password_baru != $password_baru) {
@@ -56,18 +59,20 @@
                             Password baru dan password konfirmasi berbeda
                           </div>
                           <?php
-                        } else {
+                        }else if(strlen($password_baru) <= 8) {
+                          ?>
+                          <div class="alert alert-danger" role="alert">
+                            Password harus lebih dari 8 digit
+                          </div>
+                          <?php
+                        }else {
                           $koneksi->query("UPDATE user SET `katasandi`='$password_baru' WHERE id=$id");
                               ?>
                               <div class="alert alert-success" role="alert">
                                 Password Berhasil diubah
                               </div>
                             <?php
-
-
                         }
-
-
 
                     }
                      ?>
@@ -83,5 +88,21 @@
       if ( window.history.replaceState ) {
       window.history.replaceState( null, null, window.location.href );
       }
+
+      function myFunction() {
+      var x = document.getElementById("myInput");
+      var y = document.getElementById("myInput1");
+      var z = document.getElementById("myInput2");
+
+      if (x.type === "password") {
+        x.type = "text";
+        y.type = "text";
+        z.type = "text";
+      } else {
+        x.type = "password";
+        y.type = "password";
+        z.type = "password";
+      }
+    }
     </script>
 </div>
