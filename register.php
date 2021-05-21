@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="login-file/css/style.css">
 
     <?php date_default_timezone_set("Asia/Makassar") ?>
-    <?php include "conf/koneksi.php" ?>
+    <?php
+    include "conf/koneksi.php";
+    include "classes/class.phpmailer.php";
+    ?>
 </head>
 
 <body>
@@ -33,14 +36,14 @@
                             <label for="email"><i class="zmdi zmdi-email"></i></label>
                             <input type="email" name="email" id="email" placeholder="Email" required/>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="pass" id="pass" placeholder="Password" required/>
                         </div>
                         <div class="form-group">
                             <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                             <input type="password" name="re_pass" id="re_pass" placeholder="Ulang password" required/>
-                        </div>
+                        </div> -->
                         <!-- <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
@@ -59,7 +62,7 @@
         </div>
 
         <!-- query pendaftaran -->
-            
+
         <!-- batas query pendaftaran -->
     </div>
 
@@ -71,26 +74,51 @@
 </html>
 
 <?php
+$get =  $koneksi->query("SELECT * FROM user");
 
-if(isset($_POST['daftar'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $pass = $_POST['pass'];
-    $re_post = $_POST['re_pass'];
+while ($data = $get->fetch_assoc()) {
+  $emailLama = $data['email'];
+  }
+  if(isset($_POST['daftar'])){
+      $name = $_POST['name'];
+      $email = $_POST['email'];
+      // $pass = $_POST['pass'];
+      // $re_post = $_POST['re_pass'];
 
-    if(strlen($pass) <= 8){
-        echo "<script>alert('Password harus lebih dari 8 digit');location='register.php'</script>";
-    }else if($pass == $re_post){
+      if($email == $emailLama){
+          echo "<script>alert('Email sudah terdaftar');location='register.php'</script>";
+      }else {
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = substr(str_shuffle($permitted_chars), 0, 8);
 
-        $sql = "INSERT INTO user (nama, email, katasandi) VALUES ('$name', '$email', '$pass')";
+        $sql = "INSERT INTO user (nama, email, katasandi) VALUES ('$name', '$email', '$randomString')";
         $query = mysqli_query($koneksi, $sql);
 
-        if($query){
-            echo "<script>alert('Data berhasil ditambah');location='login.php'</script>";
-        }
-    }else{
-        echo "<script>alert('Username dan Password tidak sesuai!');location='register.php'</script>";
-    }
-}
+        $mail_body = '<div style="text-align:center;">'
+          .'<h3>Terima Kasih telah mendaftarkan akun anda</h3>'
+          .'<p>Berikut ini merupakan password sementara akun anda : </p>'
+          .'<h2 style="background-color:lightgrey;width:150px;margin-left:auto;margin-right:auto; ">'."$randomString".'</h2>'
+          .'<p>Silahkan <a href="https://skripsivivi.my.id/login.php">Login</a> pada halaman website dan ganti password anda pada menu Ganti Password.</p>'
+          .'<p>Selamat Memesan.</p>'
+        .'</div>';
+        $mail = new PHPMailer;
+        $mail->IsSMTP();
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = "skripsivivi.my.id"; //host masing2 provider email
+        $mail->SMTPDebug = 2;
+        $mail->Port = 465;
+        $mail->SMTPAuth = true;
+        $mail->Username = "registrasi@skripsivivi.my.id"; //user email
+        $mail->Password = "123456asdqwe"; //password email
+        $mail->SetFrom('registrasi@skripsivivi.my.id','PT. Anugrah Tehnik Mandiri'); //set email pengirim
+        $mail->Subject = "Selamat Datang"; //subyek email
+        $mail->AddAddress("$email","Client");  //tujuan email
+        $mail->MsgHTML($mail_body);
+        if($mail->Send()) echo "<script>alert('Silahkan mengecek Email anda untuk mendapatkan Password');location='register.php'</script>";
+        else echo "<script>alert('Email Gagal Terkirim, Silahkan coba lagi');location='register.php'</script>";
+      }
+  }
+
+
 
 ?>
