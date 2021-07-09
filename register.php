@@ -104,12 +104,12 @@ while ($data = $get->fetch_assoc()) {
         $mail = new PHPMailer;
         $mail->IsSMTP();
         $mail->SMTPSecure = 'ssl';
-        $mail->Host = "skripsivivi.my.id"; //host masing2 provider email
+        $mail->Host = "smtp.gmail.com"; //host masing2 provider email
         $mail->SMTPDebug = 2;
         $mail->Port = 465;
         $mail->SMTPAuth = true;
-        $mail->Username = "registrasi@skripsivivi.my.id"; //user email
-        $mail->Password = "123456asdqwe"; //password email
+        $mail->Username = "novitadwicendaniraya97@gmail.com"; //user email
+        $mail->Password = "yygexrocofynbrol"; //password email
         $mail->SetFrom('registrasi@skripsivivi.my.id','PT. Anugrah Tehnik Mandiri'); //set email pengirim
         $mail->Subject = "Selamat Datang"; //subyek email
         $mail->AddAddress("$email","Client");  //tujuan email

@@ -1,6 +1,8 @@
 <?php
 require_once '../../assets/vendor/mpdf/autoload.php';
 include '../../conf/koneksi.php';
+include 'terbilang.php';
+
 $statusTombol = "Tidak";
 $tgl_awal = $_GET['tgl_awal'];
 $tgl_akhir = $_GET['tgl_akhir'];
@@ -100,11 +102,15 @@ while ($data = $get->fetch_assoc()) :
         $totalPenjualan = $totalPenjualan + $totalharga;
     $no++;
 endwhile;
-
+$terbilang = terbilang($totalPenjualan) . " rupiah";
 $html .= '
 <tr>
   <td colspan="8">Total Penjualan</td>
   <td>'.number_format($totalPenjualan).'</td>
+</tr>
+<tr style="border: 0.01px solid black;">
+  <td colspan="2">Terbilang</td>
+  <td colspan="8" style="text-align: right;">'.$terbilang.'</td>
 </tr>
 </table>
 <table style="float:right;text-align:right;width:100%;">
